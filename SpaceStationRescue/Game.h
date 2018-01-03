@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include "Worker.h"
+
 class Game
 {
 public:
@@ -22,4 +24,8 @@ private:
 	sf::RenderWindow *m_window;
 
 	bool m_exitGame;
+
+	sf::Texture workerTexture;
+
+	std::vector<Worker> * workers;
 };

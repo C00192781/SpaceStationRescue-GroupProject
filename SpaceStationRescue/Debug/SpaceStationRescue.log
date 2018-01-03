@@ -1,3 +1,13 @@
-﻿  Game.cpp
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Artificial Intelligence\Joint CA\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Artificial Intelligence\Joint CA\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+﻿  Worker.cpp
+c:\users\matthew\desktop\github\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\matthew\desktop\github\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  Player.cpp
+c:\users\matthew\desktop\github\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\matthew\desktop\github\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  BasicGameObject.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  Game.cpp
+  BasicAI.cpp
+  SpaceStationRescue.vcxproj -> C:\Users\Matthew\Desktop\Github\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
