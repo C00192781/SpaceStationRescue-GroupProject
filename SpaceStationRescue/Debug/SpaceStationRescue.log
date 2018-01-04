@@ -1,3 +1,4 @@
-﻿  Game.cpp
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Artificial Intelligence\Joint CA\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Artificial Intelligence\Joint CA\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+﻿  Player.cpp
+d:\aiproject\player\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
+  SpaceStationRescue.vcxproj -> D:\AIProject\Player\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> D:\AIProject\Player\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

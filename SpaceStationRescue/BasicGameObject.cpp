@@ -1,5 +1,9 @@
 #include "BasicGameObject.h"
 
+#include <iostream>
+
+
+
 BasicGameObject::BasicGameObject()
 {
 
@@ -26,4 +30,53 @@ void BasicGameObject::Update()
 void BasicGameObject::Draw(sf::RenderWindow *window)
 {
 	window->draw(m_sprite);
+}
+
+void BasicGameObject::SetupSprite(sf::Texture* texture)
+{
+	m_sprite.setTexture(*texture);
+	//m_sprite.getTexture();
+	m_sprite.setPosition(m_position);
+}
+
+
+sf::Vector2f BasicGameObject::getPosition()
+{
+	return m_position;
+}
+
+void BasicGameObject::SetPosition(sf::Vector2f newPosition)
+{
+	m_position = newPosition;
+	m_sprite.setPosition(m_position);
+}
+
+sf::Vector2f BasicGameObject::getVelocity()
+{
+	return m_velocity;
+}
+
+void BasicGameObject::SetVelocity(sf::Vector2f newVelocity)
+{
+	m_velocity = newVelocity;
+}
+
+sf::Vector2f BasicGameObject::getMaxSpeed()
+{
+	return m_maxSpeed;
+}
+
+void BasicGameObject::SetMaxSpeed(sf::Vector2f newMaxSpeed)
+{
+	m_maxSpeed = newMaxSpeed;
+}
+
+float BasicGameObject::getOrientation()
+{
+	return m_orientation;
+}
+
+sf::Sprite& BasicGameObject::getSprite()
+{
+	return m_sprite;
 }
