@@ -16,6 +16,9 @@ Game::Game()
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture);
 
 	bullets = new std::vector<Bullet>();
+
+
+	view = m_window->getDefaultView();
 }
 
 Game::~Game()
@@ -42,6 +45,7 @@ void Game::update()
 	player.movementHandler(sf::Vector2f(1920, 1080));
 	player.Update();
 
+	// ADDING BULLETS 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{ 
 		if (timer == 0)
@@ -51,7 +55,7 @@ void Game::update()
 		}
 		timer++;
 	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		timer = 0.0f;
 	}
@@ -59,7 +63,6 @@ void Game::update()
 	{
 		timer = 0;
 	}
-
 
 
 	for (int i = 0; i < bullets->size(); i++)
@@ -72,6 +75,7 @@ void Game::update()
 		bullets->at(i).Update();
 	}
 
+	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
 	if (m_exitGame == true)
 	{
@@ -87,5 +91,8 @@ void Game::render()
 	{
 		bullets->at(i).Draw(m_window);
 	}
+
+	m_window->setView(view);
+
 	m_window->display();
 }

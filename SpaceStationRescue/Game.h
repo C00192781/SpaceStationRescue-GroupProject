@@ -30,4 +30,7 @@ private:
 	sf::Texture playerTexture; 
 	sf::Texture bulletTexture;
 	std::vector<Bullet> * bullets;
+
+
+	sf::View view;
 };
