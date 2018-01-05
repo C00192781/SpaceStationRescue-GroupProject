@@ -31,5 +31,7 @@ public:
 	sf::Vector2f getMaxSpeed();
 	void SetMaxSpeed(sf::Vector2f newMaxSpeed);
 
+	float getOrientation();
+
 	sf::Sprite &getSprite();
 };

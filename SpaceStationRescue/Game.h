@@ -1,6 +1,8 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "Player.h"
+#include "Bullet.h"
 
 #include <iostream>
 
@@ -17,6 +19,8 @@ private:
 	int screenWidth = 1980;
     int screenHeight = 1080;
 
+	int timer;
+
 	void processEvents();
 	void update();
 	void render();
@@ -25,7 +29,13 @@ private:
 
 	bool m_exitGame;
 
-	sf::Texture workerTexture;
+	sf::Texture playerTexture; 
 
+	sf::Texture bulletTexture;
+	std::vector<Bullet> * bullets;
+
+	sf::Texture workerTexture;
 	std::vector<Worker> * workers;
+
+	sf::View view;
 };
