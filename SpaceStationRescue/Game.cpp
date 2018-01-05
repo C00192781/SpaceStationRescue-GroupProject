@@ -4,6 +4,8 @@ Player player;
 
 Game::Game()
 {
+	srand(time(NULL));
+
 	m_window = new sf::RenderWindow(sf::VideoMode{ 1920, 1080, 32 }, "Space Station Rescue 2!!!");
 	m_exitGame = false;
 	m_window->setFramerateLimit(60);
@@ -17,12 +19,19 @@ Game::Game()
 
 	bullets = new std::vector<Bullet>();
 
+	workerTexture.loadFromFile("worker.png");
+
+	workers = new std::vector<Worker>();
+	workers->push_back(Worker(sf::Vector2f(200, 200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(500, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(1000, 600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	view = m_window->getDefaultView();
 }
 
 Game::~Game()
 {
+
 }
 
 void Game::run()
@@ -75,6 +84,11 @@ void Game::update()
 		bullets->at(i).Update();
 	}
 
+	for (int i = 0; i < workers->size(); i++)
+	{
+		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0));
+	}
+
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
 	if (m_exitGame == true)
@@ -94,5 +108,9 @@ void Game::render()
 
 	m_window->setView(view);
 
+	for (int i = 0; i < workers->size(); i++)
+	{
+		workers->at(i).Draw(m_window);
+	}
 	m_window->display();
 }

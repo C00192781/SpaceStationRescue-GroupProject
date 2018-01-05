@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+#include "Worker.h"
+
 class Game
 {
 public:
@@ -28,9 +30,12 @@ private:
 	bool m_exitGame;
 
 	sf::Texture playerTexture; 
+
 	sf::Texture bulletTexture;
 	std::vector<Bullet> * bullets;
 
+	sf::Texture workerTexture;
+	std::vector<Worker> * workers;
 
 	sf::View view;
 };

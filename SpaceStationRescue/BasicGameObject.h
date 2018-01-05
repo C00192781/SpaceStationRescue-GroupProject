@@ -24,13 +24,13 @@ public:
 	virtual void Draw(sf::RenderWindow *window);
 	void SetupSprite(sf::Texture* texture);
 
-
 	sf::Vector2f getPosition();
 	void SetPosition(sf::Vector2f newPosition);
 	sf::Vector2f getVelocity();
 	void SetVelocity(sf::Vector2f newVelocity);
 	sf::Vector2f getMaxSpeed();
 	void SetMaxSpeed(sf::Vector2f newMaxSpeed);
+
 	float getOrientation();
 
 	sf::Sprite &getSprite();
