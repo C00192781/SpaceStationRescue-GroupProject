@@ -68,24 +68,24 @@ sf::Vector2f Player::velocityHandler(float orientation)
 
 void Player::Bounds(sf::Vector2f screenBounds)
 {
-	std::cout << m_position.x << std::endl;
-	if (m_position.x >= screenBounds.x)
-	{
-		m_sprite.setPosition(0.0f - m_texture.getSize().x, m_position.y);
+	//std::cout << m_position.x << std::endl;
+	//if (m_position.x >= screenBounds.x)
+	//{
+	//	m_sprite.setPosition(0.0f - m_texture.getSize().x, m_position.y);
 
-	}
-	else if (m_position.x < m_texture.getSize().x)
-	{
-		//m_position.x = screenBounds.x + m_texture.getSize().x;
-	}
-	else if (m_position.y > screenBounds.y)
-	{
+	//}
+	//else if (m_position.x < m_texture.getSize().x)
+	//{
+	//	//m_position.x = screenBounds.x + m_texture.getSize().x;
+	//}
+	//else if (m_position.y > screenBounds.y)
+	//{
 
-	} 
-	else if (m_position.y < 0)
-	{
+	//} 
+	//else if (m_position.y < 0)
+	//{
 
-	}
+	//}
 }
 
 

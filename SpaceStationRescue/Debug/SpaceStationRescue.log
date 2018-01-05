@@ -1,5 +1,7 @@
-﻿  Player.cpp
-d:\aiproject\master\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
-  LINK : D:\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe not found or not built by the last incremental link; performing full link
-  SpaceStationRescue.vcxproj -> D:\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> D:\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+﻿  BasicAI.cpp
+c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.cpp(197): warning C4018: '<': signed/unsigned mismatch
+c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.cpp(208): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.cpp(211): warning C4305: '=': truncation from 'double' to 'float'
+  SpaceStationRescue.vcxproj -> C:\Users\Matthew\Desktop\Git\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe

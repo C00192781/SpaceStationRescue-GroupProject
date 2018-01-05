@@ -14,17 +14,30 @@ Game::Game()
 
 	playerTexture.loadFromFile("Assets\\Images\\Player.png");
 	bulletTexture.loadFromFile("Assets\\Images\\Bullet.png");
+	workerTexture.loadFromFile("worker.png");
+	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture);
 
 	bullets = new std::vector<Bullet>();
 
-	workerTexture.loadFromFile("worker.png");
-
 	workers = new std::vector<Worker>();
 	workers->push_back(Worker(sf::Vector2f(200, 200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(500, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
-	workers->push_back(Worker(sf::Vector2f(1000, 600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	walls = new std::vector<Wall>();
+	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1600, 100), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(100, 1600), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(100, 1600), 0, &wallTexture));
+
+	walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1500, 100), 0, &wallTexture));
+	walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1500, 100), 0, &wallTexture));
+	walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
+	walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
+
+	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	view = m_window->getDefaultView();
 }
@@ -86,7 +99,12 @@ void Game::update()
 
 	for (int i = 0; i < workers->size(); i++)
 	{
-		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0));
+		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0),walls);
+	}
+
+	for (int i = 0; i < walls->size(); i++)
+	{
+		walls->at(i).Update();
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
@@ -99,18 +117,24 @@ void Game::update()
 
 void Game::render()
 {
-	m_window->clear(sf::Color::White);
+	m_window->clear(sf::Color::Black);
 	player.Draw(m_window);
 	for (int i = 0; i < bullets->size(); i++)
 	{
 		bullets->at(i).Draw(m_window);
 	}
 
-	m_window->setView(view);
-
 	for (int i = 0; i < workers->size(); i++)
 	{
 		workers->at(i).Draw(m_window);
 	}
+
+	for (int i = 0; i < walls->size(); i++)
+	{
+		walls->at(i).Draw(m_window);
+	}
+
+	m_window->setView(view);
+
 	m_window->display();
 }

@@ -16,7 +16,7 @@ BasicGameObject::BasicGameObject(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2
 	m_maxSpeed = maxSpeed;
 	m_orientation = orientation;
 	m_texture = tex;
-	m_sprite.setTexture(tex);
+	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(m_position);
 }
 

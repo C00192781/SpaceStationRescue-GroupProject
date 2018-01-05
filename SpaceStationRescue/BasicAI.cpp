@@ -22,7 +22,7 @@ BaseAI::~BaseAI()
 {
 }
 
-void BaseAI::Update(sf::Vector2f targetPosition, sf::Vector2f targetVelocity)
+void BaseAI::Update(sf::Vector2f targetPosition, sf::Vector2f targetVelocity, std::vector<Wall> * walls)
 {
 	SetTargetPosition(targetPosition);
 	SetTargetVelocity(targetVelocity);
@@ -46,6 +46,7 @@ void BaseAI::Update(sf::Vector2f targetPosition, sf::Vector2f targetVelocity)
 	{
 		Pursue();
 	}
+	WallAvoidance(walls);
 	m_sprite.move(m_velocity);
 	m_position = m_sprite.getPosition();
 }
@@ -168,4 +169,70 @@ void BaseAI::SetTargetPosition(sf::Vector2f newTargetPosition)
 void BaseAI::SetTargetVelocity(sf::Vector2f newTargetVelocity)
 {
 	m_targetVelocity = newTargetVelocity;
+}
+
+void BaseAI::WallAvoidance(std::vector<Wall> * walls)
+{
+	float lookahead = 100;
+	float avoidDistance = 50;
+	sf::Vector2f rayVector = m_velocity;
+	rayVector = Normalize(rayVector);
+	rayVector = rayVector * lookahead;
+	BasicCollision collision = WillCollideWall(rayVector, walls);
+	if (collision.willCollide == true)
+	{
+		sf::Vector2f target = collision.position + (collision.normal * avoidDistance);
+		m_targetPosition = target;
+		Seek();
+	}
+}
+
+BasicCollision BaseAI::WillCollideWall(sf::Vector2f rayVector, std::vector<Wall> * walls)
+{
+	BasicCollision coll;
+	coll.willCollide = false;
+	coll.position = sf::Vector2f(0, 0);
+	coll.normal = sf::Vector2f(0, 0);
+	sf::Vector2f vec = rayVector + m_position;
+	for (int i = 0; i < walls->size(); i++)
+	{
+		if (walls->at(i).getSprite().getGlobalBounds().contains(vec))
+		{
+			coll.willCollide = true;
+			coll.position = vec;
+			float angle = walls->at(i).getOrientation();
+			//if (walls->at(i).getPosition().x > m_position.x)
+			//{
+			//	angle = 360 - angle;
+			//}
+			angle = angle * 180 / 3.14159265359;
+			if (angle == 0)//Top
+			{
+				angle = 180 / 3.14159265359;
+			}
+
+			coll.normal.x = tanf(angle);
+			coll.normal.y = sinf(angle);
+
+			if (m_position.x < coll.position.x && coll.normal.x > coll.normal.y)//Right
+			{
+				angle = -angle;
+				coll.normal.x = tanf(angle);
+				coll.normal.y = sinf(angle);
+			}
+			if (m_position.y < coll.position.y && coll.normal.y > coll.normal.x)//Bottom
+			{
+				angle = angle+180;
+				coll.normal.x = tanf(angle);
+				coll.normal.y = sinf(angle);
+			}
+			//coll.normal = Normalize(coll.normal);
+		}
+	}
+	return coll;
+}
+
+void BaseAI::GetCollisionNormal(sf::Vector2f otherPosition)
+{
+
 }
