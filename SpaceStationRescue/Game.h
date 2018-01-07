@@ -3,10 +3,12 @@
 #include "SFML/Graphics.hpp"
 #include "Player.h"
 #include "Bullet.h"
+#include "Worker.h"
+#include "Wall.h"
+#include "Level.h"
 
 #include <iostream>
 
-#include "Worker.h"
 
 class Game
 {
@@ -36,6 +38,13 @@ private:
 
 	sf::Texture workerTexture;
 	std::vector<Worker> * workers;
+
+	sf::Texture wallTexture;
+	std::vector<Wall> * walls;
+
+	Player player;
+
+	Level levels; 
 
 	sf::View view;
 };

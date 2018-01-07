@@ -40,6 +40,7 @@ void BasicGameObject::SetupSprite(sf::Texture* texture)
 
 	//m_sprite.getTexture();
 	m_sprite.setPosition(m_position);
+	
 }
 
 

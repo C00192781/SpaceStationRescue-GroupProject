@@ -15,6 +15,7 @@ protected:
 	float m_orientation;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
+	sf::Vector2f m_size;
 
 public:
 	BasicGameObject();
