@@ -46,8 +46,8 @@ void Bullet::Bounds(std::vector<Bullet> *bullets, sf::Vector2f screenBounds)
 {
 	for (int i = 0; i < bullets->size(); i++)
 	{
-		if (m_position.x > screenBounds.x || m_position.x < 0 
-			|| m_position.y > screenBounds.y || m_position.y < 0)
+		if (m_position.x > 17280 || m_position.x < 0 
+			|| m_position.y > 9720 || m_position.y < 0)
 		{
 			// erase element that has gone out of bounds 
 			bullets->erase(bullets->begin() + i);

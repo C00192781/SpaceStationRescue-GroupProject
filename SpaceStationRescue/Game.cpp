@@ -1,7 +1,5 @@
 #include "Game.h"
 
-Player player; 
-
 Game::Game()
 {
 	srand(time(NULL));
@@ -27,6 +25,10 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(1000, 600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	walls = new std::vector<Wall>();
+	//walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
+	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
+
+	levels.levelHandler(walls, &wallTexture);
 	walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
 	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
@@ -99,6 +101,7 @@ void Game::update()
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
+	//view.setViewport(sf::FloatRect(0.25f, 0.25, 0.1f, 0.1f));
 
 	if (m_exitGame == true)
 	{
