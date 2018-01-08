@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Worker.h"
 #include "Wall.h"
+#include "Level.h"
 
 #include <iostream>
 
@@ -40,6 +41,10 @@ private:
 
 	sf::Texture wallTexture;
 	std::vector<Wall> * walls;
+
+	Player player;
+
+	Level levels; 
 
 	sf::View view;
 };

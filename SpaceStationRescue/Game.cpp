@@ -1,7 +1,5 @@
 #include "Game.h"
 
-Player player; 
-
 Game::Game()
 {
 	srand(time(NULL));
@@ -26,18 +24,20 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(500, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
-	walls = new std::vector<Wall>();
-	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 0, &wallTexture));
-	//walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1600, 100), 0, &wallTexture));
-	//walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(100, 1600), 0, &wallTexture));
-	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(100, 1600), 0, &wallTexture));
+	//walls = new std::vector<Wall>();
 
-	walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1500, 100), 0, &wallTexture));
-	walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1500, 100), 0, &wallTexture));
-	walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
-	walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1500, 100), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1500, 100), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
 
 	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
+
+	walls = new std::vector<Wall>();
+	//walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
+	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
+
+	levels.levelHandler(walls, &wallTexture);
 
 	view = m_window->getDefaultView();
 }
@@ -107,7 +107,13 @@ void Game::update()
 		walls->at(i).Update();
 	}
 
+	for (int i = 0; i < walls->size(); i++)
+	{
+		walls->at(i).Update();
+	}
+
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
+	//view.setViewport(sf::FloatRect(0.25f, 0.25, 0.1f, 0.1f));
 
 	if (m_exitGame == true)
 	{

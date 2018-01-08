@@ -15,6 +15,7 @@ Wall::Wall(sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *
 	m_sprite.setScale(sf::Vector2f(m_size.x / wallTexture->getSize().x, m_size.y / wallTexture->getSize().y));
 	m_sprite.setRotation(orientation);
 	SetupSprite(wallTexture);
+	//m_sprite.setScale(0.01, 0.01);
 }
 
 Wall::~Wall()

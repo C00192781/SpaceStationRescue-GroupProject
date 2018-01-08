@@ -1,7 +1,16 @@
-﻿  BasicAI.cpp
-c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.cpp(197): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.cpp(208): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\matthew\desktop\git\spacestationrescue\spacestationrescue\basicai.cpp(211): warning C4305: '=': truncation from 'double' to 'float'
-  SpaceStationRescue.vcxproj -> C:\Users\Matthew\Desktop\Git\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+﻿  Game.cpp
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(82): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(90): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(95): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(100): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(105): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(110): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(128): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(133): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(138): warning C4018: '<': signed/unsigned mismatch
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
