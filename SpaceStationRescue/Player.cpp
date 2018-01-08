@@ -43,7 +43,7 @@ void Player::movementHandler(sf::Vector2f screenBounds)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		if (speed < 20.0f) /// < maxSpeed   
+		if (speed < 8.0f) /// < maxSpeed   
 		{
 			speed += 0.5f;
 		}

@@ -4,7 +4,7 @@ Game::Game()
 {
 	srand(time(NULL));
 
-	m_window = new sf::RenderWindow(sf::VideoMode{ 1920, 1080, 32 }, "Space Station Rescue 2!!!");
+	m_window = new sf::RenderWindow(sf::VideoMode{ screenWidth, screenHeight, 32 }, "Space Station Rescue 2!!!");
 	m_exitGame = false;
 	m_window->setFramerateLimit(60);
 
@@ -14,6 +14,7 @@ Game::Game()
 	bulletTexture.loadFromFile("Assets\\Images\\Bullet.png");
 	workerTexture.loadFromFile("worker.png");
 	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
+	predatorTexture.loadFromFile("Assets\\Images\\BasicWall.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture);
 
@@ -24,22 +25,18 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(500, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
-	//walls = new std::vector<Wall>();
-
-	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1500, 100), 0, &wallTexture));
-	//walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1500, 100), 0, &wallTexture));
-	//walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
-	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
-
-	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
+	predators = new std::vector<Predator>();
+	predators->push_back(Predator(sf::Vector2f(500, 600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &predatorTexture));
 
 	walls = new std::vector<Wall>();
-	//walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
-	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	levels.levelHandler(walls, &wallTexture);
 
 	view = m_window->getDefaultView();
+	tempTarget = sf::Vector2f(0, 0);
+	graph = new Graph<pair<string, int>, int>(30);
+	GraphSetUp();
+	RunAStar(*graph);
 }
 
 Game::~Game()
@@ -99,7 +96,7 @@ void Game::update()
 
 	for (int i = 0; i < workers->size(); i++)
 	{
-		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0),walls);
+		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0), walls);
 	}
 
 	for (int i = 0; i < walls->size(); i++)
@@ -107,9 +104,9 @@ void Game::update()
 		walls->at(i).Update();
 	}
 
-	for (int i = 0; i < walls->size(); i++)
+	for (int i = 0; i < predators->size(); i++)
 	{
-		walls->at(i).Update();
+		predators->at(i).Update(tempTarget, sf::Vector2f(0, 0), walls);
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
@@ -135,6 +132,11 @@ void Game::render()
 		workers->at(i).Draw(m_window);
 	}
 
+	for (int i = 0; i < predators->size(); i++)
+	{
+		predators->at(i).Draw(m_window);
+	}
+
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Draw(m_window);
@@ -143,4 +145,62 @@ void Game::render()
 	m_window->setView(view);
 
 	m_window->display();
+}
+
+void Game::RunAStar(Graph<pair<string, int>, int> graph)
+{
+	// Now traverse the graph.
+	std::vector<Node *> thepath;
+	graph.aStar(graph.nodeArray()[0], graph.nodeArray()[2], thepath);//13 1
+	for (int i = thepath.size() - 1; i > -1; i--)
+	{
+		std::cout << "Location : " << thepath.at(i)->data().first << " Cost : " << thepath.at(i)->data().second << " h(n) : " << thepath.at(i)->getEstimatedDistToDest() << std::endl;
+		if (thepath.at(i) == graph.nodeArray()[1])
+		{
+			std::cout << std::endl;
+		}
+	}
+
+	ifstream myfile;
+	std::string temp;
+	int i = 0;
+	int posX = 0;
+	int posY = 0;
+	myfile.open("nodes.txt");
+	while (myfile >> temp >> posX >> posY)
+	{
+		std::cout << thepath.at(1)->data().first;
+		if (temp == thepath.at(1)->data().first)
+		{
+			tempTarget.x = posX;
+			tempTarget.y = posY;
+		}
+	}
+	myfile.close();
+}
+
+void Game::GraphSetUp()
+{
+	std::string temp;
+	int i = 0;
+	ifstream myfile;
+	int posX = 0;
+	int posY = 0;
+	myfile.open("nodes.txt");
+
+	while (myfile >> temp >> posX >> posY)
+	{
+		graph->addNode(pair<string, int>(temp, std::numeric_limits<int>::max() - 10000), i);
+		i++;
+	}
+	myfile.close();
+
+	myfile.open("arcs.txt");
+	int from, to, weight;
+	while(myfile >> from >> to >> weight)
+	{
+		graph->addArc(from, to, weight);
+		//arcVector.push_back(ArcGraphics(graphicsVector.at(from).getScreenPosition(), graphicsVector.at(to).getScreenPosition(),weight));
+	}
+	myfile.close();
 }

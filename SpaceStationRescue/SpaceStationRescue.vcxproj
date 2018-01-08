@@ -46,6 +46,9 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphArc.h" />
+    <ClInclude Include="GraphNode.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Interceptor.h" />
     <ClInclude Include="Level.h" />
@@ -58,6 +61,10 @@
     <ClInclude Include="Sweeper.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Worker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="arcs.txt" />
+    <Text Include="nodes.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

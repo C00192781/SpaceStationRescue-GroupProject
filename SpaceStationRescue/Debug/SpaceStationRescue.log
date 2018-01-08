@@ -1,16 +1,37 @@
 ﻿  Game.cpp
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(82): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(90): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(95): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(100): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(105): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(110): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(128): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(133): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(138): warning C4018: '<': signed/unsigned mismatch
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(79): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(87): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(97): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(102): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(107): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(125): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(135): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(140): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(175): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(176): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\graph.h(483): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\graph.h(467): note: while compiling class template member function 'void Graph<std::pair<std::string,int>,int>::aStar(GraphNode<std::pair<std::string,int>,int> *,GraphNode<std::pair<std::string,int>,int> *,std::vector<GraphNode<std::pair<std::string,int>,int> *,std::allocator<_Ty>> &)'
+          with
+          [
+              _Ty=GraphNode<std::pair<std::string,int>,int> *
+          ]
+  c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(154): note: see reference to function template instantiation 'void Graph<std::pair<std::string,int>,int>::aStar(GraphNode<std::pair<std::string,int>,int> *,GraphNode<std::pair<std::string,int>,int> *,std::vector<GraphNode<std::pair<std::string,int>,int> *,std::allocator<_Ty>> &)' being compiled
+          with
+          [
+              _Ty=GraphNode<std::pair<std::string,int>,int> *
+          ]
+  c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(37): note: see reference to class template instantiation 'Graph<std::pair<std::string,int>,int>' being compiled
+  Generating Code...
+  Compiling...
+  main.cpp
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  Generating Code...
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\Pathfinding\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\Pathfinding\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
