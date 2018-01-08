@@ -47,6 +47,15 @@ private:
 	sf::Vector2f GetTarget();
 	Graph<pair<string, int>, int>* graph;
 
+
+
+	std::vector<sf::Vector2f> waypoints; 
+
+
+
+
+
+
 	sf::RenderWindow *m_window;
 
 	bool m_exitGame;
@@ -71,4 +80,9 @@ private:
 
 	sf::View view;
 	sf::Vector2f tempTarget;
+
+
+
+
+
 };

@@ -187,6 +187,7 @@ void BaseAI::WallAvoidance(std::vector<Wall> * walls)
 	}
 }
 
+
 BasicCollision BaseAI::WillCollideWall(sf::Vector2f rayVector, std::vector<Wall> * walls)
 {
 	BasicCollision coll;

@@ -36,7 +36,7 @@ Game::Game()
 	tempTarget = sf::Vector2f(0, 0);
 	graph = new Graph<pair<string, int>, int>(30);
 	GraphSetUp();
-	RunAStar(*graph);
+	//RunAStar(*graph);
 }
 
 Game::~Game()
@@ -106,7 +106,7 @@ void Game::update()
 
 	for (int i = 0; i < predators->size(); i++)
 	{
-		predators->at(i).Update(tempTarget, sf::Vector2f(0, 0), walls);
+		predators->at(i).Update(graph, &waypoints, walls);
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
@@ -161,22 +161,9 @@ void Game::RunAStar(Graph<pair<string, int>, int> graph)
 		}
 	}
 
-	ifstream myfile;
-	std::string temp;
-	int i = 0;
-	int posX = 0;
-	int posY = 0;
-	myfile.open("nodes.txt");
-	while (myfile >> temp >> posX >> posY)
-	{
-		std::cout << thepath.at(1)->data().first;
-		if (temp == thepath.at(1)->data().first)
-		{
-			tempTarget.x = posX;
-			tempTarget.y = posY;
-		}
-	}
-	myfile.close();
+	string temp = thepath.at(1)->data().first;
+	int tempInt = std::stoi(temp);
+	tempTarget = waypoints.at(tempInt);
 }
 
 void Game::GraphSetUp()
@@ -191,6 +178,7 @@ void Game::GraphSetUp()
 	while (myfile >> temp >> posX >> posY)
 	{
 		graph->addNode(pair<string, int>(temp, std::numeric_limits<int>::max() - 10000), i);
+		waypoints.push_back(sf::Vector2f(posX, posY));
 		i++;
 	}
 	myfile.close();

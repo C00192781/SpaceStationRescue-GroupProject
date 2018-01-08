@@ -399,9 +399,13 @@ void Graph<NodeType, ArcType>::ucs(Node* pStart, Node* pDest, std::vector<Node *
 	if (pStart != 0)
 	{
 		for (int index = 0; index < m_maxNodes; index++) {
-			if (m_pNodes[index] != 0) {
+			if (m_pNodes[index] != 0) 
+			{
 				m_pNodes[index]->setData(pair<string, int>(m_pNodes[index]->data().first, std::numeric_limits<int>::max() - 10000));
-
+				//make sure marked is set to false
+				m_pNodes[index]->setMarked(false);
+				//set bool
+				m_pNodes[index]->setRemoved(false);
 			}
 		}
 		bool foundPath = false;
@@ -503,9 +507,10 @@ void Graph<NodeType, ArcType>::aStar(Node* pStart, Node* pDest, std::vector<Node
 			list<Arc>::const_iterator endIter = nodeQueue.top()->arcList().end();
 			for (; iter != endIter; iter++)
 			{
+				int dist = nodeQueue.top()->data().second + iter->weight();//
 				if ((*iter).node()->getPrevious() != nodeQueue.top())
 				{
-					int dist = nodeQueue.top()->data().second + iter->weight();
+					//****
 
 					//Checks if distance is shorter than current shortest distance to this node
 					if (dist < (*iter).node()->data().second)
@@ -525,25 +530,26 @@ void Graph<NodeType, ArcType>::aStar(Node* pStart, Node* pDest, std::vector<Node
 						(*iter).node()->setMarked(true);
 						nodeQueue.push((*iter).node());
 					}
-
-					if ((*iter).node() == pDest)
+					//***
+					
+				}
+				if ((*iter).node() == pDest)//
+				{
+					if (dist <= (*iter).node()->data().second)
 					{
-						if (dist <= (*iter).node()->data().second)
+						//sets new distance
+						(*iter).node()->setData(pair<string, int>((*iter).node()->data().first, dist));
+						//sets pointer for previous node to the node at the top of the queue
+						(*iter).node()->setPrevious((nodeQueue.top()));
+						//Clears contents of vector
+						path.clear();
+						Node* temp = (*iter).node();
+						path.push_back((*iter).node());
+						//Gets pointer to the previous node and adds it to the path vector
+						while (temp != pStart)
 						{
-							//sets new distance
-							(*iter).node()->setData(pair<string, int>((*iter).node()->data().first, dist));
-							//sets pointer for previous node to the node at the top of the queue
-							(*iter).node()->setPrevious((nodeQueue.top()));
-							//Clears contents of vector
-							path.clear();
-							Node* temp = (*iter).node();
-							path.push_back((*iter).node());
-							//Gets pointer to the previous node and adds it to the path vector
-							while (temp != pStart)
-							{
-								temp = temp->getPrevious();
-								path.push_back(temp);
-							}
+							temp = temp->getPrevious();
+							path.push_back(temp);
 						}
 					}
 				}

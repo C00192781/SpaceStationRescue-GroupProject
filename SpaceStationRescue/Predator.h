@@ -1,5 +1,8 @@
 #pragma once
 #include "BasicAI.h"
+#include "Graph.h"
+
+#include "Pathfinding.h"
 
 class Predator : public BaseAI
 {
@@ -9,6 +12,8 @@ public:
 	~Predator();
 
 	//void PlayerCollision(sf::FloatRect playerRect);
+
+	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls);
 
 private:
 

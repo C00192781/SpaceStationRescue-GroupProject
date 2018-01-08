@@ -29,7 +29,7 @@ void Bullet::BulletHandler(std::vector<Bullet> *bullets, sf::Vector2f screenBoun
 	m_velocity.y = m_velocity.y * m_maxSpeed.y;
 	m_sprite.move(m_velocity);
 
-	m_sprite.setOrigin(m_sprite.getTexture()->getSize().x, m_sprite.getTexture()->getSize().y);
+	m_sprite.setOrigin(m_sprite.getTexture()->getSize().x/2, m_sprite.getTexture()->getSize().y/2);
 	m_sprite.setRotation(m_orientation * conversion);
 	Bounds(bullets, screenBounds);
 }
