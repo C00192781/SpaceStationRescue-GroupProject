@@ -1,55 +1,15 @@
-﻿  Worker.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  Wall.cpp
-  Sweeper.cpp
-  SoundManager.cpp
-  Radar.cpp
-  Predator.cpp
-  PowerUp.cpp
-  Player.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
-  Nest.cpp
-  main.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  Level.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(72): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(132): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(139): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(173): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\level.cpp(186): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Interceptor.cpp
-  InputHandler.cpp
-  Game.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(73): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(81): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(86): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(91): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(96): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(114): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(119): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\map\spacestationrescue\spacestationrescue\game.cpp(124): warning C4018: '<': signed/unsigned mismatch
-  Explosion.cpp
-  Bullet.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\bullet.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
-d:\aiproject\map\spacestationrescue\spacestationrescue\bullet.cpp(32): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-d:\aiproject\map\spacestationrescue\spacestationrescue\bullet.cpp(47): warning C4018: '<': signed/unsigned mismatch
-  BasicGameObject.cpp
-  BasicAI.cpp
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\aiproject\map\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  Generating Code...
-  SpaceStationRescue.vcxproj -> D:\AIProject\Map\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> D:\AIProject\Map\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+﻿  Game.cpp
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\basicai.h(60): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\basicai.h(61): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(75): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(83): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(88): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(93): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(98): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(116): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(121): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\aiproject\master\spacestationrescue\spacestationrescue\game.cpp(126): warning C4018: '<': signed/unsigned mismatch
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\AIProject\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

@@ -29,6 +29,8 @@ Game::Game()
 	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	levels.levelHandler(walls, &wallTexture);
+	walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
+	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	view = m_window->getDefaultView();
 }
