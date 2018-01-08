@@ -22,15 +22,22 @@ Game::Game()
 	workers = new std::vector<Worker>();
 	workers->push_back(Worker(sf::Vector2f(200, 200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(500, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
-	workers->push_back(Worker(sf::Vector2f(1000, 600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	//walls = new std::vector<Wall>();
+
+	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1500, 100), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 1500), sf::Vector2f(1500, 100), 0, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(1500, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
+	//walls->push_back(Wall(sf::Vector2f(0, 0), sf::Vector2f(1600, 100), 90, &wallTexture));
+
+	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	walls = new std::vector<Wall>();
 	//walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
 	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	levels.levelHandler(walls, &wallTexture);
-	walls->push_back(Wall(sf::Vector2f(500, 200), sf::Vector2f(100, 100), 0, &wallTexture));
-	// sf::Vector2f pos, sf::Vector2f size, float orientation, sf::Texture *wallTexture
 
 	view = m_window->getDefaultView();
 }
@@ -92,7 +99,12 @@ void Game::update()
 
 	for (int i = 0; i < workers->size(); i++)
 	{
-		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0));
+		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0),walls);
+	}
+
+	for (int i = 0; i < walls->size(); i++)
+	{
+		walls->at(i).Update();
 	}
 
 	for (int i = 0; i < walls->size(); i++)

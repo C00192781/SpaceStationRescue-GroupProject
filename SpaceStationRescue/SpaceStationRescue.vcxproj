@@ -22,6 +22,7 @@
     <ClCompile Include="BasicAI.cpp" />
     <ClCompile Include="BasicGameObject.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="InputHandler.cpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="BasicAI.h" />
     <ClInclude Include="BasicGameObject.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputHandler.h" />

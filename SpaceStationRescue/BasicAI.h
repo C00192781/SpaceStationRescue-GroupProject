@@ -7,6 +7,14 @@
 #include <iostream>
 #include <math.h>
 #include <random>
+#include "Wall.h"
+
+struct BasicCollision
+{
+	bool willCollide;
+	sf::Vector2f position;
+	sf::Vector2f normal;
+};
 
 class BaseAI : public BasicGameObject
 {
@@ -17,7 +25,7 @@ public:
 
 	//virtual void SetupSprite(sf::Texture* texture);
 	//virtual void Draw(sf::RenderWindow & window);
-	virtual void Update(sf::Vector2f targetPosition, sf::Vector2f targetVelocity);
+	virtual void Update(sf::Vector2f targetPosition, sf::Vector2f targetVelocity, std::vector<Wall> * walls);
 
 	virtual float GetNewOrientation();
 	sf::Vector2f Normalize(sf::Vector2f &velocity);
@@ -27,6 +35,9 @@ public:
 	virtual void Flee();
 	virtual void Arrive();
 	virtual void Pursue();
+	virtual void WallAvoidance(std::vector<Wall> * walls);
+	virtual BasicCollision WillCollideWall(sf::Vector2f rayVector, std::vector<Wall> * walls);
+	void GetCollisionNormal(sf::Vector2f otherPosition);
 
 	//virtual bool Bounds(sf::Vector2f boundsPosition, sf::Vector2f boundsSize);
 	void SetTargetPosition(sf::Vector2f newTargetPosition);
