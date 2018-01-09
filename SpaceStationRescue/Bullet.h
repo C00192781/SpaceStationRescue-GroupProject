@@ -11,6 +11,7 @@ public:
 	//void PlayerCollision(sf::FloatRect playerRect);
 
 	void BulletHandler(std::vector<Bullet> *bullets, sf::Vector2f screenBounds);
+	std::string shooter;
 
 private:
 	float conversion;

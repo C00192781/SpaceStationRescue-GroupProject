@@ -30,8 +30,6 @@ private:
 	unsigned int screenWidth = 1920;
 	unsigned int screenHeight = 1080;
 
-	int timer;
-
 	void processEvents();
 	void update();
 	void render();
@@ -61,8 +59,6 @@ private:
 
 	sf::Texture playerTexture; 
 
-	sf::Texture bulletTexture;
-	std::vector<Bullet> * bullets;
 
 	sf::Texture workerTexture;
 	std::vector<Worker> * workers;
@@ -72,6 +68,8 @@ private:
 
 	sf::Texture wallTexture;
 	std::vector<Wall> * walls;
+
+	sf::Texture bulletTexture;
 
 	Player player;
 
