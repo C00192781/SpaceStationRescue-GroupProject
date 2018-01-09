@@ -143,6 +143,9 @@
     <ClInclude Include="Pathfinding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PathfindingStates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="arcs.txt">

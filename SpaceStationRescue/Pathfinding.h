@@ -15,7 +15,11 @@ public:
 	~Pathfinding();
 	typedef GraphArc<string, int> Arc;
 	typedef GraphNode<pair<string, int>, int> Node;
-	sf::Vector2f RunAStar(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints);
+	sf::Vector2f RunAStar(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, int *start, int *end);
+	sf::Vector2f searchNearestWaypoint(std::vector<sf::Vector2f>* waypoints, sf::Vector2f position); 
+
+	int getWaypointIndex(std::vector<sf::Vector2f>* waypoints, sf::Vector2f pos);
+		
 
 private:
 

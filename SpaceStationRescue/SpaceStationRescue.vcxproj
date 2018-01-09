@@ -55,6 +55,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="Nest.h" />
     <ClInclude Include="Pathfinding.h" />
+    <ClInclude Include="PathfindingStates.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Predator.h" />

@@ -26,7 +26,7 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	predators = new std::vector<Predator>();
-	predators->push_back(Predator(sf::Vector2f(500, 600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &predatorTexture));
+	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
 
 	walls = new std::vector<Wall>();
 
@@ -106,7 +106,7 @@ void Game::update()
 
 	for (int i = 0; i < predators->size(); i++)
 	{
-		predators->at(i).Update(graph, &waypoints, walls);
+		predators->at(i).Update(graph, &waypoints, walls, player.getPosition());
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
@@ -147,24 +147,7 @@ void Game::render()
 	m_window->display();
 }
 
-void Game::RunAStar(Graph<pair<string, int>, int> graph)
-{
-	// Now traverse the graph.
-	std::vector<Node *> thepath;
-	graph.aStar(graph.nodeArray()[0], graph.nodeArray()[2], thepath);//13 1
-	for (int i = thepath.size() - 1; i > -1; i--)
-	{
-		std::cout << "Location : " << thepath.at(i)->data().first << " Cost : " << thepath.at(i)->data().second << " h(n) : " << thepath.at(i)->getEstimatedDistToDest() << std::endl;
-		if (thepath.at(i) == graph.nodeArray()[1])
-		{
-			std::cout << std::endl;
-		}
-	}
 
-	string temp = thepath.at(1)->data().first;
-	int tempInt = std::stoi(temp);
-	tempTarget = waypoints.at(tempInt);
-}
 
 void Game::GraphSetUp()
 {

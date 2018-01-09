@@ -42,7 +42,6 @@ private:
 	
 	typedef GraphArc<string, int> Arc;
 	typedef GraphNode<pair<string, int>, int> Node;
-	void RunAStar(Graph<pair<string, int>, int> graph);
 	void GraphSetUp();
 	sf::Vector2f GetTarget();
 	Graph<pair<string, int>, int>* graph;
