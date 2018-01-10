@@ -173,8 +173,8 @@ void BaseAI::SetTargetVelocity(sf::Vector2f newTargetVelocity)
 
 void BaseAI::WallAvoidance(std::vector<Wall> * walls)
 {
-	float lookahead = 100;
-	float avoidDistance = 50;
+	float lookahead = 50;
+	float avoidDistance = 200;
 	sf::Vector2f rayVector = m_velocity;
 	rayVector = Normalize(rayVector);
 	rayVector = rayVector * lookahead;
@@ -201,33 +201,27 @@ BasicCollision BaseAI::WillCollideWall(sf::Vector2f rayVector, std::vector<Wall>
 		{
 			coll.willCollide = true;
 			coll.position = vec;
-			float angle = walls->at(i).getOrientation();
-			//if (walls->at(i).getPosition().x > m_position.x)
-			//{
-			//	angle = 360 - angle;
-			//}
-			angle = angle * 180 / 3.14159265359;
-			if (angle == 0)//Top
-			{
-				angle = 180 / 3.14159265359;
-			}
 
-			coll.normal.x = tanf(angle);
-			coll.normal.y = sinf(angle);
-
-			if (m_position.x < coll.position.x && coll.normal.x > coll.normal.y)//Right
+			if (vec.x > walls->at(i).getPosition().x && m_position.x < walls->at(i).getPosition().x)
 			{
-				angle = -angle;
-				coll.normal.x = tanf(angle);
-				coll.normal.y = sinf(angle);
+				coll.normal.x = -1;
+				coll.normal.y = 0;
 			}
-			if (m_position.y < coll.position.y && coll.normal.y > coll.normal.x)//Bottom
+			else if (vec.x < walls->at(i).getPosition().x + walls->at(i).getSprite().getGlobalBounds().width && m_position.x > walls->at(i).getPosition().x + walls->at(i).getSprite().getGlobalBounds().width)
 			{
-				angle = angle+180;
-				coll.normal.x = tanf(angle);
-				coll.normal.y = sinf(angle);
+				coll.normal.x = 1;
+				coll.normal.y = 0;
 			}
-			//coll.normal = Normalize(coll.normal);
+			if (vec.y > walls->at(i).getPosition().y && m_position.y < walls->at(i).getPosition().y)
+			{
+				coll.normal.x = 0;
+				coll.normal.y = -1;
+			}
+			if (vec.y < walls->at(i).getPosition().y + walls->at(i).getSprite().getGlobalBounds().height && m_position.y > walls->at(i).getPosition().y + walls->at(i).getSprite().getGlobalBounds().height)
+			{
+				coll.normal.x = 0;
+				coll.normal.y = 1;
+			}
 		}
 	}
 	return coll;
