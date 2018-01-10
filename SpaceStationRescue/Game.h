@@ -80,6 +80,7 @@ private:
 	sf::Vector2f tempTarget;
 
 
+	int collected;
 
 
 

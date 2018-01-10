@@ -34,6 +34,19 @@ void BasicGameObject::Draw(sf::RenderWindow *window)
 	window->draw(m_sprite);
 }
 
+bool BasicGameObject::CollisionDetection(sf::Sprite sprite)
+{
+	if (sprite.getLocalBounds().intersects(m_sprite.getLocalBounds()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
 void BasicGameObject::SetupSprite(sf::Texture* texture)
 {
 	m_sprite.setTexture(*texture);

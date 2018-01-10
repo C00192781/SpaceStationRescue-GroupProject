@@ -8,6 +8,8 @@ public:
 	Worker(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxSpeed, sf::Texture* workerTexture);
 	~Worker();
 
+	//void Update(sf::Sprite sprite);
+
 	//void PlayerCollision(sf::FloatRect playerRect);
 
 private:

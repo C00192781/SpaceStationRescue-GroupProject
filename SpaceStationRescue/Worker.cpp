@@ -21,3 +21,8 @@ Worker::~Worker()
 {
 
 }
+
+//void Worker::Update(sf::Sprite sprite)
+//{
+//
+//}

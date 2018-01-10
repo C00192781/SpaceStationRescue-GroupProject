@@ -23,6 +23,7 @@ public:
 	~BasicGameObject();
 	virtual void Update();
 	virtual void Draw(sf::RenderWindow *window);
+	bool CollisionDetection(sf::Sprite sprite);
 	void SetupSprite(sf::Texture* texture);
 
 	sf::Vector2f getPosition();
