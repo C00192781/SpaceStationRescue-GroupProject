@@ -12,6 +12,7 @@ Worker::Worker(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxSpe
 	currentState = (AIState)0;
 	m_maxSpeed = maxSpeed;
 	wanderDistance = 300;
+	m_sprite.setOrigin(32, 32);
 	SetupSprite(workerTexture);
 }
 

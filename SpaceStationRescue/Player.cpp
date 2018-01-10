@@ -5,7 +5,7 @@ Player::Player()
 	//Player(sf::Vector2f(100.0f, 100.0f), sf::Vector2f(100.0f, 100.0f), sf::Vector2f(100.0f, 100.0f), 0, m_texture.loadFromFile("")); 
 }
 
-Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float orientation, sf::Texture* playerTexture)
+Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float orientation, sf::Texture* playerTexture, sf::Texture& bulletTex)
 {
 	speed = 0.0f;
 	conversion = 180 / 3.14159265359;
@@ -13,22 +13,23 @@ Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float 
 	m_velocity = vel;
 	m_maxSpeed = maxSpeed;
 	m_orientation = orientation;
+	bulletTexture = bulletTex;
 	SetupSprite(playerTexture);
 	m_sprite.setOrigin(29, 30.5);
+
+	bullets = new std::vector<Bullet>();
 }
 
 Player::~Player()
 {
 }
 
-void Player::movementHandler(sf::Vector2f screenBounds)
+void Player::movementHandler()
 {
 	m_position = m_sprite.getPosition();
 	m_velocity = velocityHandler(m_orientation);
 	m_velocity = m_velocity * speed;
 	m_sprite.move(m_velocity);
-
-	Bounds(screenBounds);
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -43,7 +44,7 @@ void Player::movementHandler(sf::Vector2f screenBounds)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		if (speed < 20.0f) /// < maxSpeed   
+		if (speed < 8.0f) /// < maxSpeed   
 		{
 			speed += 0.5f;
 		}
@@ -66,26 +67,45 @@ sf::Vector2f Player::velocityHandler(float orientation)
 }
 
 
-void Player::Bounds(sf::Vector2f screenBounds)
+void Player::bulletHandler()
 {
-	//std::cout << m_position.x << std::endl;
-	//if (m_position.x >= screenBounds.x)
-	//{
-	//	m_sprite.setPosition(0.0f - m_texture.getSize().x, m_position.y);
+	// ADDING BULLETS 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		if (bulletTimer == 0)
+		{
+			bullets->push_back(Bullet(sf::Vector2f(getPosition().x, getPosition().y), getVelocity(), sf::Vector2f(15, 15), getOrientation(), &bulletTexture));
+			bulletTimer++;
+		}
+		bulletTimer++;
+	}
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		bulletTimer = 0.0f;
+	}
+	if (bulletTimer >= 10)
+	{
+		bulletTimer = 0;
+	}
 
-	//}
-	//else if (m_position.x < m_texture.getSize().x)
-	//{
-	//	//m_position.x = screenBounds.x + m_texture.getSize().x;
-	//}
-	//else if (m_position.y > screenBounds.y)
-	//{
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		bullets->at(i).BulletHandler(bullets, sf::Vector2f(1920, 1080));
+	}
 
-	//} 
-	//else if (m_position.y < 0)
-	//{
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		bullets->at(i).Update();
+	}
+}
 
-	//}
+void Player::Draw(sf::RenderWindow *window)
+{
+	window->draw(m_sprite);
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		window->draw(bullets->at(i).getSprite());
+	}
 }
 
 

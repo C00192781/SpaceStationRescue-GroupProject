@@ -30,6 +30,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Nest.cpp" />
+    <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Predator.cpp" />
@@ -46,10 +47,15 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphArc.h" />
+    <ClInclude Include="GraphNode.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Interceptor.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Nest.h" />
+    <ClInclude Include="Pathfinding.h" />
+    <ClInclude Include="PathfindingStates.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Predator.h" />
@@ -58,6 +64,10 @@
     <ClInclude Include="Sweeper.h" />
     <ClInclude Include="Wall.h" />
     <ClInclude Include="Worker.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="arcs.txt" />
+    <Text Include="nodes.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

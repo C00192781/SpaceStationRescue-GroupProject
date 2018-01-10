@@ -5,6 +5,7 @@
 
 
 #include "BasicGameObject.h"
+#include "Bullet.h"
 
 #include <iostream>
 
@@ -14,17 +15,21 @@ class Player : public BasicGameObject
 {
 public:
 	Player();
-	Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float orientation, sf::Texture* tex);
+	Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float orientation, sf::Texture* tex, sf::Texture& bulletTex);
 	~Player();
 
-	void movementHandler(sf::Vector2f screenBounds);
+	void movementHandler();
+	void bulletHandler();
+	void Draw(sf::RenderWindow *window);
 	float speed;
+
+	std::vector<Bullet> * bullets;
+	int bulletTimer;
 	
 private:
-	void Bounds(sf::Vector2f screenBounds);
 	sf::Vector2f velocityHandler(float orientation);
 	float conversion;
-
+	sf::Texture bulletTexture;
 
 };
 
