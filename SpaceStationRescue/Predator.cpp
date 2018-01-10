@@ -76,6 +76,7 @@ void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vect
 		}
 	}
 	Seek();
+	WallAvoidance(walls);
 	//if (((m_position.x+(m_sprite.getGlobalBounds().width/2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
 	//	&& ((m_position.y+(m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
 	//{

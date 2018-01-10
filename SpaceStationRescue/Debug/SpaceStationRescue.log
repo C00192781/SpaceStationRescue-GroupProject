@@ -1,5 +1,8 @@
-﻿  Worker.cpp
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\Pathfinding\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\Pathfinding\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+﻿  Player.cpp
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(33): error C2065: 'walls': undeclared identifier
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(33): error C3861: 'WallAvoidance': identifier not found
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(93): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(98): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(107): warning C4018: '<': signed/unsigned mismatch
