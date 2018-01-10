@@ -1,8 +1,16 @@
-﻿  Player.cpp
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(84): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(91): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(96): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\player.cpp(105): warning C4018: '<': signed/unsigned mismatch
+﻿  Game.cpp
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(69): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(74): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(79): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(102): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(107): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(112): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(122): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(127): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(132): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\pathfinding\spacestationrescue\spacestationrescue\game.cpp(157): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\Pathfinding\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\Pathfinding\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

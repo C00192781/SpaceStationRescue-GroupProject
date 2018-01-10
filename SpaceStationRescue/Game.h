@@ -76,6 +76,7 @@ private:
 	Level levels; 
 
 	sf::View view;
+	sf::View radar;
 	sf::Vector2f tempTarget;
 
 

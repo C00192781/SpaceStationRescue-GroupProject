@@ -32,6 +32,8 @@ Game::Game()
 	levels.levelHandler(walls, &wallTexture);
 
 	view = m_window->getDefaultView();
+	radar = sf::View(sf::Vector2f(2880, 1620), sf::Vector2f(5760, 3240));
+	radar.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
 	tempTarget = sf::Vector2f(0, 0);
 	graph = new Graph<pair<string, int>, int>(30);
 	GraphSetUp();
@@ -91,6 +93,10 @@ void Game::update()
 void Game::render()
 {
 	m_window->clear(sf::Color::Black);
+
+	//Draw Full Level
+	m_window->setView(view);
+
 	player.Draw(m_window);
 
 	for (int i = 0; i < workers->size(); i++)
@@ -108,9 +114,30 @@ void Game::render()
 		walls->at(i).Draw(m_window);
 	}
 
-	m_window->setView(view);
+	//Draw Radar
+	m_window->setView(radar);
+
+	player.Draw(m_window);
+
+	for (int i = 0; i < workers->size(); i++)
+	{
+		workers->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < predators->size(); i++)
+	{
+		predators->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < walls->size(); i++)
+	{
+		walls->at(i).Draw(m_window);
+	}
 
 	m_window->display();
+	//m_window->setView(m_window->getDefaultView());
+
+	
 }
 
 
