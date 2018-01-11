@@ -11,9 +11,10 @@ Game::Game()
 
 	playerTexture.loadFromFile("Assets\\Images\\Player.png");
 	bulletTexture.loadFromFile("Assets\\Images\\Bullet.png");
-	workerTexture.loadFromFile("worker.png");
+	workerTexture.loadFromFile("Assets\\Images\\Worker.png");
 	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
 	predatorTexture.loadFromFile("Assets\\Images\\BasicWall.png");
+	sweeperTexture.loadFromFile("Assets\\Images\\Sweeper.png");
 	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture, bulletTexture);
@@ -25,6 +26,9 @@ Game::Game()
 
 	predators = new std::vector<Predator>();
 	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
+
+	sweepers = new std::vector<Sweeper>();
+	sweepers->push_back(Sweeper(sf::Vector2f(2000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
 
 	walls = new std::vector<Wall>();
 
@@ -85,8 +89,12 @@ void Game::update()
 		predators->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
 	}
 
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers);
+	}
+
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
-	//view.setViewport(sf::FloatRect(0.25f, 0.25, 0.1f, 0.1f));
 
 	// Create a text
 	collectionText.setString("Workers Collected: " + std::to_string(player.collected));
@@ -127,6 +135,11 @@ void Game::render()
 		predators->at(i).Draw(m_window);
 	}
 
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		sweepers->at(i).Draw(m_window);
+	}
+
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Draw(m_window);
@@ -152,6 +165,11 @@ void Game::render()
 	for (int i = 0; i < predators->size(); i++)
 	{
 		predators->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		sweepers->at(i).Draw(m_window);
 	}
 
 	for (int i = 0; i < walls->size(); i++)

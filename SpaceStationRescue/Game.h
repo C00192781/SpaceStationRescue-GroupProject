@@ -7,6 +7,7 @@
 #include "Wall.h"
 #include "Level.h"
 #include "Predator.h"
+#include "Sweeper.h"
 #include "Floor.h"
 
 #include "Graph.h"
@@ -53,6 +54,9 @@ private:
 
 	sf::Texture predatorTexture;
 	std::vector<Predator> * predators;
+
+	sf::Texture sweeperTexture;
+	std::vector<Sweeper> * sweepers;
 
 	sf::Texture wallTexture;
 	std::vector<Wall> * walls;
