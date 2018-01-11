@@ -17,7 +17,10 @@ Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float 
 	SetupSprite(playerTexture);
 	m_sprite.setOrigin(29, 30.5);
 
+	m_alive = true;
+	m_health = 100;
 	bullets = new std::vector<Bullet>();
+	collected = 0;
 }
 
 Player::~Player()
@@ -105,6 +108,32 @@ void Player::Draw(sf::RenderWindow *window)
 	for (int i = 0; i < bullets->size(); i++)
 	{
 		window->draw(bullets->at(i).getSprite());
+	}
+}
+
+void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators)
+{
+	movementHandler();
+	bulletHandler();
+
+	for (int i = 0; i < workers->size(); i++)
+	{
+		if (CollisionDetection(workers->at(i).getSprite()) == true)
+		{
+			workers->at(i).SetMaxSpeed(sf::Vector2f(0.0f, 0.0f));
+			workers->at(i).SetPosition(sf::Vector2f(-1000.0f, -1000.0f));
+			collected++;
+		//	workers->erase(workers->begin() + i);
+		}
+	}
+
+	for (int i = 0; i < predators->size(); i++)
+	{
+		if (CollisionDetection(predators->at(i).getSprite()) == true && predators->at(i).getAlive() == true)
+		{
+			predators->at(i).setAlive(false);
+			setHealth(m_health - 30);
+		}
 	}
 }
 

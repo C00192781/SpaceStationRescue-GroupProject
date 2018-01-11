@@ -36,7 +36,7 @@ void BasicGameObject::Draw(sf::RenderWindow *window)
 
 bool BasicGameObject::CollisionDetection(sf::Sprite sprite)
 {
-	if (sprite.getLocalBounds().intersects(m_sprite.getLocalBounds()))
+	if (sprite.getGlobalBounds().intersects(m_sprite.getGlobalBounds()))
 	{
 		return true;
 	}
@@ -86,6 +86,26 @@ sf::Vector2f BasicGameObject::getMaxSpeed()
 void BasicGameObject::SetMaxSpeed(sf::Vector2f newMaxSpeed)
 {
 	m_maxSpeed = newMaxSpeed;
+}
+
+int BasicGameObject::getHealth()
+{
+	return m_health;
+}
+
+void BasicGameObject::setHealth(int health)
+{
+	m_health = health;
+}
+
+bool BasicGameObject::getAlive()
+{
+	return m_alive;
+}
+
+void BasicGameObject::setAlive(int alive)
+{
+	m_alive = alive;
 }
 
 float BasicGameObject::getOrientation()

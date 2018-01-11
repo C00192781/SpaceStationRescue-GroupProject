@@ -34,24 +34,14 @@ private:
 	void update();
 	void render();
 
-
-
 	// AStar + Graph
-	
 	typedef GraphArc<string, int> Arc;
 	typedef GraphNode<pair<string, int>, int> Node;
 	void GraphSetUp();
 	sf::Vector2f GetTarget();
 	Graph<pair<string, int>, int>* graph;
 
-
-
 	std::vector<sf::Vector2f> waypoints; 
-
-
-
-
-
 
 	sf::RenderWindow *m_window;
 
@@ -72,16 +62,14 @@ private:
 	sf::Texture bulletTexture;
 
 	Player player;
-
 	Level levels; 
 
 	sf::View view;
 	sf::View radar;
 	sf::Vector2f tempTarget;
 
-
-	int collected;
-
-
+	// Declare and load a font
+	sf::Font collectionFont;
+	sf::Text collectionText;
 
 };

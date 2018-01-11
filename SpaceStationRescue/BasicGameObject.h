@@ -13,6 +13,8 @@ protected:
 	sf::Vector2f m_maxSpeed;
 
 	float m_orientation;
+	int m_health;
+	bool m_alive;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::Vector2f m_size;
@@ -32,6 +34,12 @@ public:
 	void SetVelocity(sf::Vector2f newVelocity);
 	sf::Vector2f getMaxSpeed();
 	void SetMaxSpeed(sf::Vector2f newMaxSpeed);
+
+	int getHealth();
+	void setHealth(int health);
+
+	bool getAlive();
+	void setAlive(int alive);
 
 	float getOrientation();
 

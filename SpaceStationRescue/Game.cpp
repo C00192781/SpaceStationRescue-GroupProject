@@ -38,6 +38,9 @@ Game::Game()
 	graph = new Graph<pair<string, int>, int>(30);
 	GraphSetUp();
 	//RunAStar(*graph);
+//	text.setColor(sf::Color::Red);
+
+	collectionFont.loadFromFile("Star_Jedi_Rounded.ttf");
 }
 
 Game::~Game()
@@ -62,9 +65,8 @@ void Game::processEvents()
 
 void Game::update()
 {
-	player.movementHandler();
-	player.bulletHandler();
-	player.Update();
+	//cout << text.getPosition().x << endl;
+	player.Update(workers, predators);
 
 	for (int i = 0; i < workers->size(); i++)
 	{
@@ -78,11 +80,19 @@ void Game::update()
 
 	for (int i = 0; i < predators->size(); i++)
 	{
-		predators->at(i).Update(graph, &waypoints, walls, player.getPosition());
+		predators->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 	//view.setViewport(sf::FloatRect(0.25f, 0.25, 0.1f, 0.1f));
+
+	// Create a text
+	collectionText.setString("Workers Collected: " + std::to_string(player.collected));
+	collectionText.setFont(collectionFont);
+	collectionText.setCharacterSize(30);
+	collectionText.setStyle(sf::Text::Bold);
+	collectionText.setFillColor(sf::Color::Red);
+	collectionText.setPosition(view.getCenter().x - screenWidth/2.1, view.getCenter().y - screenHeight / 2.1);
 
 	if (m_exitGame == true)
 	{
@@ -114,6 +124,8 @@ void Game::render()
 		walls->at(i).Draw(m_window);
 	}
 
+	m_window->draw(collectionText);
+
 	//Draw Radar
 	m_window->setView(radar);
 
@@ -133,7 +145,6 @@ void Game::render()
 	{
 		walls->at(i).Draw(m_window);
 	}
-
 	m_window->display();
 	//m_window->setView(m_window->getDefaultView());
 
