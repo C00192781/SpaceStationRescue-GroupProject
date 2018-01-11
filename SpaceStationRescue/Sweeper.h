@@ -36,6 +36,6 @@ private:
 	sf::VertexArray line;
 	int targetWorkerIndex;
 	bool haveWorkerTargeted;
-
+	bool fleeing;
 
 };
