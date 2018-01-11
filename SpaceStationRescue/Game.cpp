@@ -90,7 +90,7 @@ void Game::update()
 		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition());
 	}
 
-	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));;
+	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
 	if (m_exitGame == true)
 	{

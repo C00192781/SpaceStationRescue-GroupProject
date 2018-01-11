@@ -16,6 +16,10 @@ Sweeper::Sweeper(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxS
 	timer = 600;
 	startPoint = 0;
 	states = PathfindingStates::SeekWaypoint;
+	searching = true;
+	lineOfSightRadius = 200;
+	lineOfSightAngle = 90;
+	SetupLOS();
 }
 
 Sweeper::~Sweeper()
@@ -58,11 +62,24 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			states = PathfindingStates::Following;
 		}
 	}
+
+	if (searching == true)
+	{
+		std::cout << "";
+	}
+	else
+	{
+
+	}
+
 	Seek();
 	WallAvoidance(walls);
 
+	
 	m_sprite.move(m_velocity);
 	m_position = m_sprite.getPosition();
+	lineOfSight.setPosition(m_position);
+	lineOfSight.setRotation(m_sprite.getRotation()-180);
 }
 
 int Sweeper::GetRandomWaypoint(int currentWaypoint, int numWaypoints)
@@ -73,4 +90,33 @@ int Sweeper::GetRandomWaypoint(int currentWaypoint, int numWaypoints)
 		randomWaypoint = rand() % numWaypoints;
 	}
 	return randomWaypoint;
+}
+
+void Sweeper::SetupLOS()
+{
+	sf::Vector2f direction = Normalize(m_velocity);
+	float length = sqrt((direction.x * direction.x) + (direction.y * direction.y));
+	length = length * lineOfSightRadius;
+	float angleLeft = m_sprite.getRotation() - lineOfSightAngle;
+	angleLeft = angleLeft *(3.1415926 / 180);
+	sf::Vector2f leftView;
+	leftView.x = m_position.x + length * cosf(angleLeft);
+	leftView.y = m_position.y + length * sinf(angleLeft);
+
+	float angleRight = m_sprite.getRotation() + lineOfSightAngle;
+	angleRight = angleRight *(3.1415926 / 180);
+	sf::Vector2f rightView;
+	rightView.x = m_position.x + length * cosf(angleRight);
+	rightView.y = m_position.y + length * sinf(angleRight);
+
+	lineOfSight = sf::CircleShape(lineOfSightRadius, 3);
+	lineOfSight.setFillColor(sf::Color::Green);
+	lineOfSight.setOrigin(lineOfSightRadius, 0);
+	lineOfSight.setPosition(m_position);
+}
+
+void Sweeper::Draw(sf::RenderWindow *window)
+{
+	window->draw(m_sprite);
+	window->draw(lineOfSight);
 }
