@@ -2,7 +2,9 @@
 c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
 c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
 c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(15): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(101): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(107): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(125): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(133): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(171): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(177): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Sweeper\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Sweeper\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

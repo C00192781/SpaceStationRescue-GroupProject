@@ -2,6 +2,7 @@
 #include <random>
 #include "BasicAI.h"
 #include "Graph.h"
+#include "Worker.h"
 #include "Pathfinding.h"
 #include "PathfindingStates.h"
 
@@ -14,10 +15,11 @@ public:
 
 	//void PlayerCollision(sf::FloatRect playerRect);
 
-	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos);
+	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers);
 	int GetRandomWaypoint(int currentWaypoint, int numWaypoints);
 	void SetupLOS();
 	void Draw(sf::RenderWindow* window);
+	bool LookForWorker(std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers);
 
 	int startPoint;
 	int endPoint;
@@ -31,6 +33,9 @@ private:
 	sf::CircleShape lineOfSight;
 	float lineOfSightRadius;
 	float lineOfSightAngle;
+	sf::VertexArray line;
+	int targetWorkerIndex;
+	bool haveWorkerTargeted;
 
 
 };

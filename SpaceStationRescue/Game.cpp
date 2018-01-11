@@ -29,7 +29,7 @@ Game::Game()
 	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
 
 	sweepers = new std::vector<Sweeper>();
-	sweepers->push_back(Sweeper(sf::Vector2f(2000, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &sweeperTexture));
+	sweepers->push_back(Sweeper(sf::Vector2f(2000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
 
 	walls = new std::vector<Wall>();
 
@@ -87,7 +87,7 @@ void Game::update()
 
 	for (int i = 0; i < sweepers->size(); i++)
 	{
-		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition());
+		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers);
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
