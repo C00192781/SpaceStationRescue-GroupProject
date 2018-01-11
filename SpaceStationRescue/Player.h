@@ -6,6 +6,8 @@
 
 #include "BasicGameObject.h"
 #include "Bullet.h"
+#include "Worker.h"
+#include "Predator.h"
 
 #include <iostream>
 
@@ -21,10 +23,14 @@ public:
 	void movementHandler();
 	void bulletHandler();
 	void Draw(sf::RenderWindow *window);
+	void Update(std::vector<Worker>* workers, std::vector<Predator>* predators);
+
 	float speed;
 
 	std::vector<Bullet> * bullets;
 	int bulletTimer;
+	int collected; 
+
 	
 private:
 	sf::Vector2f velocityHandler(float orientation);

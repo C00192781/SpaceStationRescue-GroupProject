@@ -3,6 +3,9 @@
 #pragma once
 #include "BasicGameObject.h"
 #include "Wall.h"
+#include "Floor.h"
+
+#include <iostream>
 
 class Level : public BasicGameObject
 {
@@ -13,10 +16,18 @@ public:
 
 	//void PlayerCollision(sf::FloatRect playerRect);
 
-	void levelHandler(std::vector<Wall> *walls, sf::Texture *wallTexture);
+	void levelHandler(std::vector<Wall> *walls, sf::Texture *wallTexture, std::vector<Floor> * floor, sf::Texture *floorTexture);
 
+	void CreateMap(std::vector<Wall> * walls, sf::Texture *wallTexture, std::vector<Floor> * floor, sf::Texture *floorTexture);
 
 private:
+
+	int maxRow;
+	int maxCol;
+	int maxSquares;
+
+	static const int map[57][57];
+	int *pMap;
 
 	void Top(std::vector<Wall> * walls, sf::Texture *wallTexture);
 	void Left(std::vector<Wall> * walls, sf::Texture *wallTexture);
