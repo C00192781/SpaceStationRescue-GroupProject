@@ -123,7 +123,7 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			workers->at(i).SetMaxSpeed(sf::Vector2f(0.0f, 0.0f));
 			workers->at(i).SetPosition(sf::Vector2f(-1000.0f, -1000.0f));
 			collected++;
-		//	workers->erase(workers->begin() + i);
+			workers->erase(workers->begin() + (i));
 		}
 	}
 

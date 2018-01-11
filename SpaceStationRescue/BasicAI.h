@@ -68,8 +68,8 @@ protected:
 	float m_currentOrientation;
 
 	//Conversions between Degrees and Radians
-	float const RadiansToDegrees = 180 / 3.14159265359;
-	float const DegreesToRadians = 3.14159265359 / 180;
+	float RadiansToDegrees = 180 / 3.14159265359;
+	float DegreesToRadians = 3.14159265359 / 180;
 
 	//Needed For Behaviours
 	sf::Vector2f m_targetPosition;

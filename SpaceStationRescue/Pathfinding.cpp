@@ -25,7 +25,7 @@ sf::Vector2f Pathfinding::RunAStar(Graph<pair<string, int>, int>* graph, std::ve
 		}
 	
 		string temp = thepath.at(thepath.size() - 2)->data().first;
-		int tempInt = std::stoi(temp);
+		int tempInt = std::stoi(temp); // turn string into a int
 		return waypoints->at(tempInt);
 }
 

@@ -4,6 +4,8 @@
 #include "BasicGameObject.h"
 #include "Wall.h"
 
+#include <iostream>
+
 class Level : public BasicGameObject
 {
 public:
@@ -15,8 +17,16 @@ public:
 
 	void levelHandler(std::vector<Wall> *walls, sf::Texture *wallTexture);
 
+	void CreateMap(std::vector<Wall> * walls, sf::Texture *wallTexture);
 
 private:
+
+	int maxRow;
+	int maxCol;
+	int maxSquares;
+
+	static const int map[57][57];
+	int *pMap;
 
 	void Top(std::vector<Wall> * walls, sf::Texture *wallTexture);
 	void Left(std::vector<Wall> * walls, sf::Texture *wallTexture);
