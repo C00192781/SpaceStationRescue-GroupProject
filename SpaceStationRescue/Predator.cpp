@@ -18,6 +18,9 @@ Predator::Predator(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f ma
 	timer = 600;
 	startPoint = 0;
 	states = PathfindingStates::SeekWaypoint;
+
+	m_alive = true;
+	m_health = 100;
 }
 
 Predator::~Predator()
@@ -25,58 +28,81 @@ Predator::~Predator()
 
 }
 
-void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f> *waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos)
+void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f> *waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Bullet>* bullets)
 {
-	
-
-	if (states == PathfindingStates::Following)
+	if (m_alive == true)
 	{
-		if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
-			&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
+		if (states == PathfindingStates::Following)
 		{
-			//get index of waypoint of target position and set it as start point for astar
-			startPoint = pathfinding.getWaypointIndex(waypoints, m_targetPosition);
+			if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
+				&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
+			{
+				//get index of waypoint of target position and set it as start point for astar
+				startPoint = pathfinding.getWaypointIndex(waypoints, m_targetPosition);
+				sf::Vector2f waypointPlayer = pathfinding.searchNearestWaypoint(waypoints, playerPos);
+				endPoint = pathfinding.getWaypointIndex(waypoints, waypointPlayer);
+				if (startPoint != endPoint)
+				{
+					m_targetPosition = pathfinding.RunAStar(graph, waypoints, &startPoint, &endPoint);
+					std::cout << m_targetPosition.x << " " << m_targetPosition.y << std::endl;
+				}
+				else
+				{
+					states = PathfindingStates::SeekPlayer;
+				}
+			}
+		}
+		else if (states == PathfindingStates::SeekWaypoint)
+		{
+			m_targetPosition = pathfinding.searchNearestWaypoint(waypoints, m_position);
+			if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
+				&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
+			{
+				//get index of waypoint of target position and set it as start point for astar
+				startPoint = pathfinding.getWaypointIndex(waypoints, m_targetPosition);
+				sf::Vector2f waypointPlayer = pathfinding.searchNearestWaypoint(waypoints, playerPos);
+				endPoint = pathfinding.getWaypointIndex(waypoints, waypointPlayer);
+				states = PathfindingStates::Following;
+			}
+		}
+		else if (states == PathfindingStates::SeekPlayer)
+		{
+			m_targetPosition = playerPos;
+
+			sf::Vector2f nearestWaypoint = pathfinding.searchNearestWaypoint(waypoints, m_position);
 			sf::Vector2f waypointPlayer = pathfinding.searchNearestWaypoint(waypoints, playerPos);
+			startPoint = pathfinding.getWaypointIndex(waypoints, nearestWaypoint);
 			endPoint = pathfinding.getWaypointIndex(waypoints, waypointPlayer);
 			if (startPoint != endPoint)
 			{
-				m_targetPosition = pathfinding.RunAStar(graph, waypoints, &startPoint, &endPoint);
-				std::cout << m_targetPosition.x << " " << m_targetPosition.y << std::endl;
-			}
-			else
-			{
-				states = PathfindingStates::SeekPlayer;
+				states = PathfindingStates::SeekWaypoint;
 			}
 		}
-	}
-	else if (states == PathfindingStates::SeekWaypoint)
-	{
-		m_targetPosition = pathfinding.searchNearestWaypoint(waypoints, m_position);
-		if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
-			&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
-		{
-			//get index of waypoint of target position and set it as start point for astar
-			startPoint = pathfinding.getWaypointIndex(waypoints, m_targetPosition);
-			sf::Vector2f waypointPlayer = pathfinding.searchNearestWaypoint(waypoints, playerPos);
-			endPoint = pathfinding.getWaypointIndex(waypoints, waypointPlayer);
-			states = PathfindingStates::Following;
-		}
-	}
-	else if (states == PathfindingStates::SeekPlayer)
-	{
-		m_targetPosition = playerPos;
+		Seek();
+		WallAvoidance(walls);
 
-		sf::Vector2f nearestWaypoint = pathfinding.searchNearestWaypoint(waypoints, m_position);
-		sf::Vector2f waypointPlayer = pathfinding.searchNearestWaypoint(waypoints, playerPos);
-		startPoint = pathfinding.getWaypointIndex(waypoints, nearestWaypoint);
-		endPoint = pathfinding.getWaypointIndex(waypoints, waypointPlayer);
-		if (startPoint != endPoint)
+		m_sprite.move(m_velocity);
+		m_position = m_sprite.getPosition();
+	}
+
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		if (CollisionDetection(bullets->at(i).getSprite()) == true)
 		{
-			states = PathfindingStates::SeekWaypoint;
+			bullets->erase(bullets->begin() + i);
+			m_health -= 25;
 		}
 	}
-	Seek();
-	WallAvoidance(walls);
+
+	if (m_health <= 0)
+	{
+		setAlive(false);
+	}
+
+	if (getAlive() == false)
+	{
+		SetPosition(sf::Vector2f(-1000, -1000));
+	}
 	//if (((m_position.x+(m_sprite.getGlobalBounds().width/2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
 	//	&& ((m_position.y+(m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
 	//{
@@ -94,6 +120,5 @@ void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vect
 	//}
 
 	//WallAvoidance(walls);
-	m_sprite.move(m_velocity);
-	m_position = m_sprite.getPosition();
+
 }

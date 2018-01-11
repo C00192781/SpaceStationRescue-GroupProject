@@ -8,6 +8,7 @@
 #include "Level.h"
 #include "Predator.h"
 #include "Sweeper.h"
+#include "Floor.h"
 
 #include "Graph.h"
 
@@ -35,31 +36,18 @@ private:
 	void update();
 	void render();
 
-
-
 	// AStar + Graph
-	
 	typedef GraphArc<string, int> Arc;
 	typedef GraphNode<pair<string, int>, int> Node;
 	void GraphSetUp();
 	sf::Vector2f GetTarget();
 	Graph<pair<string, int>, int>* graph;
 
-
-
 	std::vector<sf::Vector2f> waypoints; 
-
-
-
-
-
 
 	sf::RenderWindow *m_window;
 
 	bool m_exitGame;
-
-	sf::Texture playerTexture; 
-
 
 	sf::Texture workerTexture;
 	std::vector<Worker> * workers;
@@ -76,6 +64,10 @@ private:
 	sf::Texture bulletTexture;
 
 	Player player;
+	sf::Texture playerTexture;
+
+	sf::Texture floorTexture;
+	std::vector<Floor> * floor;
 
 	Level levels; 
 
@@ -83,8 +75,8 @@ private:
 	sf::View radar;
 	sf::Vector2f tempTarget;
 
-
-
-
+	// Declare and load a font
+	sf::Font collectionFont;
+	sf::Text collectionText;
 
 };

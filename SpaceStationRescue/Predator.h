@@ -3,6 +3,7 @@
 #include "Graph.h"
 #include "Pathfinding.h"
 #include "PathfindingStates.h"
+#include "Bullet.h"
 
 class Predator : public BaseAI
 {
@@ -13,7 +14,7 @@ public:
 
 	//void PlayerCollision(sf::FloatRect playerRect);
 
-	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos);
+	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Bullet>* bullets);
 
 
 	int startPoint;

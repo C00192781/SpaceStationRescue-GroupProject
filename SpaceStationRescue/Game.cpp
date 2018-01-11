@@ -15,10 +15,9 @@ Game::Game()
 	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
 	predatorTexture.loadFromFile("Assets\\Images\\BasicWall.png");
 	sweeperTexture.loadFromFile("Assets\\Images\\Sweeper.png");
+	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture, bulletTexture);
-
-	
 
 	workers = new std::vector<Worker>();
 	workers->push_back(Worker(sf::Vector2f(700, 300), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
@@ -33,7 +32,9 @@ Game::Game()
 
 	walls = new std::vector<Wall>();
 
-	levels.levelHandler(walls, &wallTexture);
+	floor = new std::vector<Floor>();
+
+	levels.levelHandler(walls, &wallTexture, floor, &floorTexture);
 
 	view = m_window->getDefaultView();
 	radar = sf::View(sf::Vector2f(2880, 1620), sf::Vector2f(5760, 3240));
@@ -42,6 +43,9 @@ Game::Game()
 	graph = new Graph<pair<string, int>, int>(30);
 	GraphSetUp();
 	//RunAStar(*graph);
+//	text.setColor(sf::Color::Red);
+
+	collectionFont.loadFromFile("Star_Jedi_Rounded.ttf");
 }
 
 Game::~Game()
@@ -66,9 +70,8 @@ void Game::processEvents()
 
 void Game::update()
 {
-	player.movementHandler();
-	player.bulletHandler();
-	player.Update();
+	//cout << text.getPosition().x << endl;
+	player.Update(workers, predators);
 
 	for (int i = 0; i < workers->size(); i++)
 	{
@@ -80,9 +83,10 @@ void Game::update()
 		walls->at(i).Update();
 	}
 
+
 	for (int i = 0; i < predators->size(); i++)
 	{
-		predators->at(i).Update(graph, &waypoints, walls, player.getPosition());
+		predators->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
 	}
 
 	for (int i = 0; i < sweepers->size(); i++)
@@ -91,6 +95,14 @@ void Game::update()
 	}
 
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
+
+	// Create a text
+	collectionText.setString("Workers Collected: " + std::to_string(player.collected));
+	collectionText.setFont(collectionFont);
+	collectionText.setCharacterSize(30);
+	collectionText.setStyle(sf::Text::Bold);
+	collectionText.setFillColor(sf::Color::White);
+	collectionText.setPosition(view.getCenter().x - screenWidth/2.1, view.getCenter().y - screenHeight / 2.1);
 
 	if (m_exitGame == true)
 	{
@@ -104,6 +116,12 @@ void Game::render()
 
 	//Draw Full Level
 	m_window->setView(view);
+
+
+	for (int i = 0; i < floor->size(); i++)
+	{
+		floor->at(i).Draw(m_window);
+	}
 
 	player.Draw(m_window);
 
@@ -127,8 +145,15 @@ void Game::render()
 		walls->at(i).Draw(m_window);
 	}
 
+	m_window->draw(collectionText);
+
 	//Draw Radar
 	m_window->setView(radar);
+
+	for (int i = 0; i < floor->size(); i++)
+	{
+		floor->at(i).Draw(m_window);
+	}
 
 	player.Draw(m_window);
 
