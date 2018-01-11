@@ -101,8 +101,9 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 		if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
 			&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
 		{
-			workers->at(targetWorkerIndex).SetMaxSpeed(sf::Vector2f(0, 0));
-			workers->at(targetWorkerIndex).SetPosition(sf::Vector2f(-1000, -1000));
+			//workers->at(targetWorkerIndex).SetMaxSpeed(sf::Vector2f(0, 0));
+			//workers->at(targetWorkerIndex).SetPosition(sf::Vector2f(-1000, -1000));
+			workers->erase(workers->begin() + (targetWorkerIndex));
 			searching = true;
 			workerCount += 1;
 			states = SeekWaypoint;

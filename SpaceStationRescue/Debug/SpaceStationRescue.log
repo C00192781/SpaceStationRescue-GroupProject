@@ -1,10 +1,43 @@
 ﻿  Sweeper.cpp
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'const float'
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(15): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(125): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(133): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(171): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(177): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(126): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(172): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\sweeper.cpp(178): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  Worker.cpp
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Predator.cpp
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\predator.cpp(17): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+  Game.cpp
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(78): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(83): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(88): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(110): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(115): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(120): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(125): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(135): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(140): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(145): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(150): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\game.cpp(175): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  BasicAI.cpp
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\sweeper\spacestationrescue\spacestationrescue\basicai.cpp(198): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Sweeper\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Sweeper\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
