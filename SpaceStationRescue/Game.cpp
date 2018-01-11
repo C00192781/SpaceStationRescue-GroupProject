@@ -14,10 +14,9 @@ Game::Game()
 	workerTexture.loadFromFile("worker.png");
 	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
 	predatorTexture.loadFromFile("Assets\\Images\\BasicWall.png");
+	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture, bulletTexture);
-
-	
 
 	workers = new std::vector<Worker>();
 	workers->push_back(Worker(sf::Vector2f(700, 300), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
@@ -29,7 +28,9 @@ Game::Game()
 
 	walls = new std::vector<Wall>();
 
-	levels.levelHandler(walls, &wallTexture);
+	floor = new std::vector<Floor>();
+
+	levels.levelHandler(walls, &wallTexture, floor, &floorTexture);
 
 	view = m_window->getDefaultView();
 	radar = sf::View(sf::Vector2f(2880, 1620), sf::Vector2f(5760, 3240));
@@ -78,6 +79,7 @@ void Game::update()
 		walls->at(i).Update();
 	}
 
+
 	for (int i = 0; i < predators->size(); i++)
 	{
 		predators->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
@@ -91,7 +93,7 @@ void Game::update()
 	collectionText.setFont(collectionFont);
 	collectionText.setCharacterSize(30);
 	collectionText.setStyle(sf::Text::Bold);
-	collectionText.setFillColor(sf::Color::Red);
+	collectionText.setFillColor(sf::Color::White);
 	collectionText.setPosition(view.getCenter().x - screenWidth/2.1, view.getCenter().y - screenHeight / 2.1);
 
 	if (m_exitGame == true)
@@ -106,6 +108,12 @@ void Game::render()
 
 	//Draw Full Level
 	m_window->setView(view);
+
+
+	for (int i = 0; i < floor->size(); i++)
+	{
+		floor->at(i).Draw(m_window);
+	}
 
 	player.Draw(m_window);
 
@@ -129,6 +137,11 @@ void Game::render()
 	//Draw Radar
 	m_window->setView(radar);
 
+	for (int i = 0; i < floor->size(); i++)
+	{
+		floor->at(i).Draw(m_window);
+	}
+
 	player.Draw(m_window);
 
 	for (int i = 0; i < workers->size(); i++)
@@ -145,6 +158,7 @@ void Game::render()
 	{
 		walls->at(i).Draw(m_window);
 	}
+
 	m_window->display();
 	//m_window->setView(m_window->getDefaultView());
 

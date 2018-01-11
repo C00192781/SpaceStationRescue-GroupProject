@@ -7,6 +7,7 @@
 #include "Wall.h"
 #include "Level.h"
 #include "Predator.h"
+#include "Floor.h"
 
 #include "Graph.h"
 
@@ -47,9 +48,6 @@ private:
 
 	bool m_exitGame;
 
-	sf::Texture playerTexture; 
-
-
 	sf::Texture workerTexture;
 	std::vector<Worker> * workers;
 
@@ -62,6 +60,11 @@ private:
 	sf::Texture bulletTexture;
 
 	Player player;
+	sf::Texture playerTexture;
+
+	sf::Texture floorTexture;
+	std::vector<Floor> * floor;
+
 	Level levels; 
 
 	sf::View view;

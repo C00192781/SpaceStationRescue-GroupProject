@@ -1,16 +1,19 @@
-﻿  Level.cpp
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(112): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(128): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(142): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(149): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(165): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(183): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(196): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(249): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(260): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(273): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\level.cpp(287): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Game.cpp
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(77): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(83): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(97): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(113): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(120): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(125): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(140): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(147): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(152): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(157): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\CollisionDetectionLatest\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
   SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\CollisionDetectionLatest\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

@@ -3,6 +3,7 @@
 #pragma once
 #include "BasicGameObject.h"
 #include "Wall.h"
+#include "Floor.h"
 
 #include <iostream>
 
@@ -15,9 +16,9 @@ public:
 
 	//void PlayerCollision(sf::FloatRect playerRect);
 
-	void levelHandler(std::vector<Wall> *walls, sf::Texture *wallTexture);
+	void levelHandler(std::vector<Wall> *walls, sf::Texture *wallTexture, std::vector<Floor> * floor, sf::Texture *floorTexture);
 
-	void CreateMap(std::vector<Wall> * walls, sf::Texture *wallTexture);
+	void CreateMap(std::vector<Wall> * walls, sf::Texture *wallTexture, std::vector<Floor> * floor, sf::Texture *floorTexture);
 
 private:
 

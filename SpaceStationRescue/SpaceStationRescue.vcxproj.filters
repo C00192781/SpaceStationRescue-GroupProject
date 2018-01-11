@@ -75,6 +75,9 @@
     <ClCompile Include="Pathfinding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PathfindingStates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Floor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
