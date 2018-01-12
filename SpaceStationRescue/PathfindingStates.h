@@ -3,5 +3,6 @@ enum PathfindingStates
 {
 	SeekPlayer,
 	SeekWaypoint,
-	Following
+	Following,
+	Fleeing
 };

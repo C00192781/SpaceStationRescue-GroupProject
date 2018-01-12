@@ -1,19 +1,22 @@
 ﻿  Game.cpp
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(72): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(77): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(83): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(97): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(113): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(120): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(125): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(130): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(140): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(147): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(152): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(157): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\2018\aiproject\collisiondetectionlatest\spacestationrescue\spacestationrescue\game.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\CollisionDetectionLatest\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\CollisionDetectionLatest\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(76): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(85): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(91): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(96): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(109): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(125): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(132): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(137): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(142): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(147): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(157): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(164): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(169): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(174): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(179): warning C4018: '<': signed/unsigned mismatch
+d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\game.cpp(204): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SpaceStationRescue.vcxproj -> D:\AIProject\CollisionDetection\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> D:\AIProject\CollisionDetection\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

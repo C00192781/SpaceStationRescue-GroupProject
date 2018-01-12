@@ -11,9 +11,10 @@ Game::Game()
 
 	playerTexture.loadFromFile("Assets\\Images\\Player.png");
 	bulletTexture.loadFromFile("Assets\\Images\\Bullet.png");
-	workerTexture.loadFromFile("worker.png");
+	workerTexture.loadFromFile("Assets\\Images\\Worker.png");
 	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
-	predatorTexture.loadFromFile("Assets\\Images\\BasicWall.png");
+	predatorTexture.loadFromFile("Assets\\Images\\Predator.png");
+	sweeperTexture.loadFromFile("Assets\\Images\\Sweeper.png");
 	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture, bulletTexture);
@@ -24,7 +25,10 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	predators = new std::vector<Predator>();
-	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
+	predators->push_back(Predator(sf::Vector2f(800, 100), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
+
+	sweepers = new std::vector<Sweeper>();
+	sweepers->push_back(Sweeper(sf::Vector2f(2000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
 
 	walls = new std::vector<Wall>();
 
@@ -36,7 +40,7 @@ Game::Game()
 	radar = sf::View(sf::Vector2f(2880, 1620), sf::Vector2f(5760, 3240));
 	radar.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
 	tempTarget = sf::Vector2f(0, 0);
-	graph = new Graph<pair<string, int>, int>(30);
+	graph = new Graph<pair<string, int>, int>(55);
 	GraphSetUp();
 	//RunAStar(*graph);
 //	text.setColor(sf::Color::Red);
@@ -72,6 +76,10 @@ void Game::update()
 	for (int i = 0; i < workers->size(); i++)
 	{
 		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0), walls);
+		if (workers->at(i).getAlive() == false)
+		{
+			workers->erase(workers->begin() + (i));
+		}
 	}
 
 	for (int i = 0; i < walls->size(); i++)
@@ -85,8 +93,12 @@ void Game::update()
 		predators->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
 	}
 
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers);
+	}
+
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
-	//view.setViewport(sf::FloatRect(0.25f, 0.25, 0.1f, 0.1f));
 
 	// Create a text
 	collectionText.setString("Workers Collected: " + std::to_string(player.collected));
@@ -127,6 +139,11 @@ void Game::render()
 		predators->at(i).Draw(m_window);
 	}
 
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		sweepers->at(i).Draw(m_window);
+	}
+
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Draw(m_window);
@@ -152,6 +169,11 @@ void Game::render()
 	for (int i = 0; i < predators->size(); i++)
 	{
 		predators->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		sweepers->at(i).Draw(m_window);
 	}
 
 	for (int i = 0; i < walls->size(); i++)

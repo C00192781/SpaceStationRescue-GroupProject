@@ -14,6 +14,7 @@ Worker::Worker(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxSpe
 	wanderDistance = 300;
 	m_sprite.setOrigin(32, 32);
 	SetupSprite(workerTexture);
+	m_alive = true;
 }
 
 
