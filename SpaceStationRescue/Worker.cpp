@@ -15,6 +15,7 @@ Worker::Worker(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxSpe
 	m_sprite.setOrigin(32, 32);
 	SetupSprite(workerTexture);
 	m_alive = true;
+
 	radarImage = sf::CircleShape(75);
 	radarImage.setFillColor(sf::Color(0,127,14));
 	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);

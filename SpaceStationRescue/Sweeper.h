@@ -25,24 +25,22 @@ public:
 
 	int startPoint;
 	int endPoint;
-	int workerCount;
+
 	int targetWorkerIndex;
-	bool haveWorkerTargeted;
 	bool searching;
 	PathfindingStates states;
+	int workerCount;
 
 private:
 	int timer;
-	
-
 	Pathfinding pathfinding;
+
+	bool haveWorkerTargeted;
 	
 	sf::CircleShape lineOfSight;
 	float lineOfSightRadius;
 	float lineOfSightAngle;
 	sf::VertexArray line;
-	
-	
+
 	bool fleeing;
-	
 };

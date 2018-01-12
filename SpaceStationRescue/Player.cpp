@@ -56,7 +56,7 @@ void Player::movementHandler()
 			speed += 0.5f;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (speed > 0)
 		{
@@ -150,7 +150,10 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			workers->at(i).SetMaxSpeed(sf::Vector2f(0.0f, 0.0f));
 			workers->at(i).SetPosition(sf::Vector2f(-1000.0f, -1000.0f));
 			collected++;
-			m_alive = false;
+			workers->at(i).setAlive(false);
+
+			//m_alive = false;
+
 		}
 	}
 

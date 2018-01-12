@@ -24,6 +24,7 @@ Sweeper::Sweeper(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxS
 	line[0].position = sf::Vector2f(0,0);
 	line[1].position = sf::Vector2f(0,0);
 	fleeing = false;
+
 	m_alive = true;
 	workerCount = 0;
 	radarImage = sf::CircleShape(75);
@@ -113,7 +114,7 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			{
 				//plot esacpe route
 				states = PathfindingStates::Fleeing;
-				endPoint = 3;
+				endPoint = 17;
 			}
 			else
 			{
@@ -230,7 +231,7 @@ void Sweeper::SetupLOS()
 void Sweeper::Draw(sf::RenderWindow *window)
 {
 	window->draw(m_sprite);
-	//window->draw(lineOfSight);
+	window->draw(lineOfSight);
 	//window->draw(line);
 }
 
