@@ -28,6 +28,10 @@ AlienNest::~AlienNest()
 
 void AlienNest::Update(std::vector<Interceptor>* interceptors, sf::Vector2f position, sf::Texture * interceptorTexture)
 {
+	if (getHealth() <= 0)
+	{
+		setAlive(false);
+	}
 	if (m_alive == true)
 	{
 		float differenceValue = std::numeric_limits<int>::max() - 10000;
@@ -59,17 +63,16 @@ void AlienNest::Update(std::vector<Interceptor>* interceptors, sf::Vector2f posi
 			}
 			missileCounter = 1;
 		}
-
-		for (int i = 0; i < interceptors->size(); i++)
+	}
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		if (interceptors->at(i).getTimeAlive() == range) // 5 seconds
 		{
-			if (interceptors->at(i).getTimeAlive() == range) // 5 seconds
-			{
-				//setAlive(false);
-				//interceptors->erase(interceptors->begin() + i);
-				interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
-				interceptors->at(i).setAlive(false);
-				missileCounter = 0;
-			}
+			//setAlive(false);
+			//interceptors->erase(interceptors->begin() + i);
+			interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
+			interceptors->at(i).setAlive(false);
+			missileCounter = 0;
 		}
 	}
 }

@@ -132,7 +132,8 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			{
 				//workers->at(targetWorkerIndex).SetMaxSpeed(sf::Vector2f(0, 0));
 				//workers->at(targetWorkerIndex).SetPosition(sf::Vector2f(-1000, -1000));
-				workers->erase(workers->begin() + (targetWorkerIndex));
+				//workers->erase(workers->begin() + (targetWorkerIndex));
+				workers->at(targetWorkerIndex).setAlive(false);
 				searching = true;
 				workerCount += 1;
 				states = SeekWaypoint;

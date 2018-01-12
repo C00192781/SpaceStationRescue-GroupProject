@@ -41,12 +41,12 @@ void Player::movementHandler()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		m_orientation -= 0.1f;
+		m_orientation -= 0.08f;
 		m_sprite.setRotation(m_orientation * conversion);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		m_orientation += 0.1f;
+		m_orientation += 0.08f;
 		m_sprite.setRotation(m_orientation * conversion);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -115,13 +115,18 @@ void Player::Draw(sf::RenderWindow *window)
 	}
 }
 
-void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls)
+void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors)
 {
+	if (m_health <= 0)
+	{
+		setAlive(false);
+	}
 
-
-
-	movementHandler();
-	bulletHandler();
+	if (getAlive() == true)
+	{
+		movementHandler();
+		bulletHandler();
+	}
 
 	for (int i = 0; i < walls->size(); i++)
 	{
@@ -174,6 +179,31 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			setHealth(m_health - 15);
 		}
 	}
+
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		if (CollisionDetection(alienNests->at(i).getSprite()) == true && alienNests->at(i).getAlive() == true)
+		{
+			alienNests->at(i).setAlive(false);
+			setHealth(m_health - 100); // for player
+		}
+		for (int b = 0; b < bullets->size(); b++)
+		{
+			if (alienNests->at(i).getAlive() == true)
+			{
+				if (bullets->at(b).CollisionDetection(alienNests->at(i).getSprite()) == true)
+				{
+					if (b != bullets->size() - 1)
+					{
+						std::swap(bullets->at(b), bullets->at(bullets->size() - 1));
+					}
+					bullets->pop_back();
+					alienNests->at(i).setHealth(alienNests->at(i).getHealth() - 25);
+				}
+			}
+		}
+	}
+
 	radarImage.setPosition(m_position);
 }
 
