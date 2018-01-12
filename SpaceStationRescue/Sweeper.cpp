@@ -24,6 +24,12 @@ Sweeper::Sweeper(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxS
 	line[0].position = sf::Vector2f(0,0);
 	line[1].position = sf::Vector2f(0,0);
 	fleeing = false;
+
+	m_alive = true;
+	workerCount = 0;
+	radarImage = sf::CircleShape(75);
+	radarImage.setFillColor(sf::Color(150, 50, 250));
+	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
 }
 
 Sweeper::~Sweeper()
@@ -31,7 +37,7 @@ Sweeper::~Sweeper()
 
 }
 
-void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f> *waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers)
+void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f> *waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers, std::vector<Bullet>* bullets)
 {
 		if (states == PathfindingStates::Following)
 		{
@@ -126,7 +132,8 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			{
 				//workers->at(targetWorkerIndex).SetMaxSpeed(sf::Vector2f(0, 0));
 				//workers->at(targetWorkerIndex).SetPosition(sf::Vector2f(-1000, -1000));
-				workers->erase(workers->begin() + (targetWorkerIndex));
+				//workers->erase(workers->begin() + (targetWorkerIndex));
+				workers->at(targetWorkerIndex).setAlive(false);
 				searching = true;
 				workerCount += 1;
 				states = SeekWaypoint;
@@ -136,11 +143,24 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 	Seek();
 	WallAvoidance(walls);
 
+	for (int i = 0; i < bullets->size(); i++)
+	{
+		if (CollisionDetection(bullets->at(i).getSprite()) == true)
+		{
+			if (i != bullets->size() - 1)
+			{
+				std::swap(bullets->at(i), bullets->at(bullets->size() - 1));
+			}
+			bullets->pop_back();
+			m_alive = false;
+		}
+	}
 	
 	m_sprite.move(m_velocity);
 	m_position = m_sprite.getPosition();
 	lineOfSight.setPosition(m_position);
 	lineOfSight.setRotation(m_sprite.getRotation()-180);
+	radarImage.setPosition(m_position);
 }
 
 bool Sweeper::LookForWorker(std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers)
@@ -214,4 +234,9 @@ void Sweeper::Draw(sf::RenderWindow *window)
 	window->draw(m_sprite);
 	window->draw(lineOfSight);
 	//window->draw(line);
+}
+
+void Sweeper::RadarDraw(sf::RenderWindow * window)
+{
+	window->draw(radarImage);
 }

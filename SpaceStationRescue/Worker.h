@@ -12,7 +12,9 @@ public:
 
 	//void PlayerCollision(sf::FloatRect playerRect);
 
-private:
+	void RadarDraw(sf::RenderWindow* window);
 
+private:
+	sf::CircleShape radarImage;
 };
 

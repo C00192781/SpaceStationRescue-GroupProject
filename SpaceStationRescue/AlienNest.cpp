@@ -19,6 +19,7 @@ AlienNest::AlienNest(sf::Vector2f pos, sf::Vector2f size, float orientation, sf:
 	missileInitiated = false;
 	startingPosition = pos;
 	m_health = 100;
+	m_alive = true;
 }
 
 AlienNest::~AlienNest()
@@ -27,6 +28,10 @@ AlienNest::~AlienNest()
 
 void AlienNest::Update(std::vector<Interceptor>* interceptors, sf::Vector2f position, sf::Texture * interceptorTexture)
 {
+	if (getHealth() <= 0)
+	{
+		setAlive(false);
+	}
 	if (m_alive == true)
 	{
 		float differenceValue = std::numeric_limits<int>::max() - 10000;
@@ -53,12 +58,12 @@ void AlienNest::Update(std::vector<Interceptor>* interceptors, sf::Vector2f posi
 			for (int i = 0; i < interceptors->size(); i++)
 			{
 				interceptors->at(i).setTimeAlive(0);
+				interceptors->at(i).setTimeDead(0);
 				interceptors->at(i).SetPosition(sf::Vector2f(startingPosition));
 				interceptors->at(i).setAlive(true);
 			}
 			missileCounter = 1;
 		}
-
 		for (int i = 0; i < interceptors->size(); i++)
 		{
 			if (interceptors->at(i).getTimeAlive() == range) // 5 seconds
@@ -66,8 +71,19 @@ void AlienNest::Update(std::vector<Interceptor>* interceptors, sf::Vector2f posi
 				//setAlive(false);
 				//interceptors->erase(interceptors->begin() + i);
 				interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
+				interceptors->at(i).setTimeAlive(0);
+				interceptors->at(i).setTimeDead(0);
 				interceptors->at(i).setAlive(false);
 				missileCounter = 0;
+			}
+
+			if (interceptors->at(i).getTimeDead() == 500)
+			{
+				interceptors->at(i).SetPosition(sf::Vector2f(startingPosition));
+				interceptors->at(i).setAlive(true);
+				interceptors->at(i).setTimeAlive(0);
+				interceptors->at(i).setTimeDead(0);
+				missileCounter = 1;
 			}
 		}
 	}
