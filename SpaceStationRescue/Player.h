@@ -8,8 +8,12 @@
 #include "Bullet.h"
 #include "Worker.h"
 #include "Predator.h"
+#include "Interceptor.h"
+#include "AlienNest.h"
 #include "Sweeper.h"
 #include "Wall.h"
+#include "Interceptor.h"
+#include "PowerUp.h"
 
 #include <iostream>
 
@@ -26,14 +30,16 @@ public:
 	void bulletHandler();
 	void Draw(sf::RenderWindow *window);
 	void RadarDraw(sf::RenderWindow *window);
-	void Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls);
+	void Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors,std::vector<PowerUp>*powerUps);
 
 	float speed;
 
 	std::vector<Bullet> * bullets;
 	int bulletTimer;
 	int collected; 
-
+	int fireRateScaler;
+	int powerUpTimer;
+	bool powerUpActive;
 	
 private:
 	sf::Vector2f velocityHandler(float orientation);

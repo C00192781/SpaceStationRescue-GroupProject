@@ -1,36 +1,11 @@
-﻿  Player.cpp
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(91): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(98): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(103): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(112): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(126): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(133): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(146): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(157): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(166): warning C4018: '<': signed/unsigned mismatch
-  Game.cpp
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(84): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(89): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(110): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(116): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(121): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(143): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(159): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(166): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(171): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(176): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(181): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(191): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(198): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(203): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(208): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(213): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\game.cpp(238): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
-  SpaceStationRescue.vcxproj -> C:\Users\Matthew\Desktop\master\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+﻿  Sweeper.cpp
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\sweeper.cpp(15): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\sweeper.cpp(176): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\sweeper.cpp(199): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\sweeper.cpp(207): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\sweeper.cpp(245): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\gameuser\desktop\space\spacestationrescue\spacestationrescue\sweeper.cpp(251): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Space\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\Space\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

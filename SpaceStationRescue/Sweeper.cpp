@@ -24,11 +24,14 @@ Sweeper::Sweeper(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxS
 	line[0].position = sf::Vector2f(0,0);
 	line[1].position = sf::Vector2f(0,0);
 	fleeing = false;
+
 	m_alive = true;
 	workerCount = 0;
 	radarImage = sf::CircleShape(75);
 	radarImage.setFillColor(sf::Color(150, 50, 250));
 	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
+
+	chase = false;
 }
 
 Sweeper::~Sweeper()
@@ -59,9 +62,26 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 					}
 				}
 			}
-			else
+			else if (chase == false)
 			{
-
+				if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
+					&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
+				{
+					//get index of waypoint of target position and set it as start point for astar
+					startPoint = pathfinding.getWaypointIndex(waypoints, m_targetPosition);
+					sf::Vector2f waypointWorker = pathfinding.searchNearestWaypoint(waypoints, workers->at(targetWorkerIndex).getPosition());
+					endPoint = pathfinding.getWaypointIndex(waypoints, waypointWorker);
+					if (startPoint != endPoint)
+					{
+						m_targetPosition = pathfinding.RunAStar(graph, waypoints, &startPoint, &endPoint);
+						std::cout << m_targetPosition.x << " " << m_targetPosition.y << std::endl;
+					}
+					else
+					{
+						chase = true;
+						//searching = false;
+					}
+				}
 			}
 		}
 		else if (states == PathfindingStates::SeekWaypoint)
@@ -81,7 +101,17 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			}
 			else
 			{
+				m_targetPosition = pathfinding.searchNearestWaypoint(waypoints, m_position);
 
+				if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
+					&& ((m_position.y + (m_sprite.getGlobalBounds().height / 2) + 10 > m_targetPosition.y) && (m_position.y - 10 < m_targetPosition.y)))
+				{
+					//get index of waypoint of target position and set it as start point for astar
+					startPoint = pathfinding.getWaypointIndex(waypoints, m_targetPosition);
+					sf::Vector2f waypointWorker = pathfinding.searchNearestWaypoint(waypoints, workers->at(targetWorkerIndex).getPosition());
+					endPoint = pathfinding.getWaypointIndex(waypoints, waypointWorker);
+					states = PathfindingStates::Following;
+				}
 			}
 		}
 		else if (states == PathfindingStates::Fleeing)
@@ -113,7 +143,7 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			{
 				//plot esacpe route
 				states = PathfindingStates::Fleeing;
-				endPoint = 3;
+				endPoint = GetRandomWaypoint(startPoint, waypoints->size());
 			}
 			else
 			{
@@ -123,7 +153,7 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 				}
 			}
 		}
-		else if(fleeing == false)
+		else if(fleeing == false && chase == true)
 		{
 			m_targetPosition = workers->at(targetWorkerIndex).getPosition();
 			if (((m_position.x + (m_sprite.getGlobalBounds().width / 2) + 10 > m_targetPosition.x) && (m_position.x - 10 < m_targetPosition.x))
@@ -131,9 +161,11 @@ void Sweeper::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vecto
 			{
 				//workers->at(targetWorkerIndex).SetMaxSpeed(sf::Vector2f(0, 0));
 				//workers->at(targetWorkerIndex).SetPosition(sf::Vector2f(-1000, -1000));
-				workers->erase(workers->begin() + (targetWorkerIndex));
+				//workers->erase(workers->begin() + (targetWorkerIndex));
+				workers->at(targetWorkerIndex).setAlive(false);
 				searching = true;
 				workerCount += 1;
+				chase = false;
 				states = SeekWaypoint;
 			}
 		}
@@ -230,7 +262,7 @@ void Sweeper::SetupLOS()
 void Sweeper::Draw(sf::RenderWindow *window)
 {
 	window->draw(m_sprite);
-	//window->draw(lineOfSight);
+	window->draw(lineOfSight);
 	//window->draw(line);
 }
 

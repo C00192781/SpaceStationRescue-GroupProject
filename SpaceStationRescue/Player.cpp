@@ -18,13 +18,16 @@ Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float 
 	m_sprite.setOrigin(29, 30.5);
 
 	m_alive = true;
-	m_health = 100;
+	m_health = 500;
 	bullets = new std::vector<Bullet>();
 	collected = 0;
 
 	radarImage = sf::CircleShape(75);
 	radarImage.setFillColor(sf::Color::White);
 	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
+	fireRateScaler = 1;
+	powerUpTimer = 0;
+	powerUpActive = false;
 }
 
 Player::~Player()
@@ -41,12 +44,12 @@ void Player::movementHandler()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		m_orientation -= 0.1f;
+		m_orientation -= 0.08f;
 		m_sprite.setRotation(m_orientation * conversion);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		m_orientation += 0.1f;
+		m_orientation += 0.08f;
 		m_sprite.setRotation(m_orientation * conversion);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -56,7 +59,7 @@ void Player::movementHandler()
 			speed += 0.5f;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (speed > 0)
 		{
@@ -90,7 +93,7 @@ void Player::bulletHandler()
 	{
 		bulletTimer = 0.0f;
 	}
-	if (bulletTimer >= 10)
+	if (bulletTimer >= 10/fireRateScaler)
 	{
 		bulletTimer = 0;
 	}
@@ -115,13 +118,28 @@ void Player::Draw(sf::RenderWindow *window)
 	}
 }
 
-void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls)
+void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors, std::vector<PowerUp>*powerUps)
 {
+	if (m_health <= 0)
+	{
+		setAlive(false);
+	}
 
-
-
-	movementHandler();
-	bulletHandler();
+	if (getAlive() == true)
+	{
+		movementHandler();
+		bulletHandler();
+		if (powerUpActive == true)
+		{
+			powerUpTimer++;
+			if (powerUpTimer >= 300)
+			{
+				powerUpTimer = 0;
+				powerUpActive = false;
+				fireRateScaler = 1;
+			}
+		}
+	}
 
 	for (int i = 0; i < walls->size(); i++)
 	{
@@ -150,9 +168,10 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			workers->at(i).SetMaxSpeed(sf::Vector2f(0.0f, 0.0f));
 			workers->at(i).SetPosition(sf::Vector2f(-1000.0f, -1000.0f));
 			collected++;
-			m_alive = false;
+			workers->at(i).setAlive(false);
 		}
 	}
+
 
 	for (int i = 0; i < predators->size(); i++)
 	{
@@ -160,6 +179,16 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 		{
 			predators->at(i).setAlive(false);
 			setHealth(m_health - 30);
+		}
+	}
+
+	for (int i = 0; i < powerUps->size(); i++)
+	{
+		if (CollisionDetection(powerUps->at(i).getSprite()) == true && powerUps->at(i).getAlive() == true)
+		{
+			powerUps->at(i).setAlive(false);
+			powerUpActive = true;
+			fireRateScaler = 2;
 		}
 	}
 
@@ -171,6 +200,31 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			setHealth(m_health - 15);
 		}
 	}
+
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		if (CollisionDetection(alienNests->at(i).getSprite()) == true && alienNests->at(i).getAlive() == true)
+		{
+			alienNests->at(i).setAlive(false);
+			setHealth(m_health - 100); // for player
+		}
+		for (int b = 0; b < bullets->size(); b++)
+		{
+			if (alienNests->at(i).getAlive() == true)
+			{
+				if (bullets->at(b).CollisionDetection(alienNests->at(i).getSprite()) == true)
+				{
+					if (b != bullets->size() - 1)
+					{
+						std::swap(bullets->at(b), bullets->at(bullets->size() - 1));
+					}
+					bullets->pop_back();
+					alienNests->at(i).setHealth(alienNests->at(i).getHealth() - 25);
+				}
+			}
+		}
+	}
+
 	radarImage.setPosition(m_position);
 }
 

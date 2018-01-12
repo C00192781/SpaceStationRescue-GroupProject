@@ -20,8 +20,9 @@ public:
 	int startPoint;
 	int endPoint;
 
+	PathfindingStates states;
 private:
 	int timer;
-	PathfindingStates states;
+	
 
 };

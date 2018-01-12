@@ -16,6 +16,9 @@ Game::Game()
 	predatorTexture.loadFromFile("Assets\\Images\\Predator.png");
 	sweeperTexture.loadFromFile("Assets\\Images\\Sweeper.png");
 	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
+	alienNestTexture.loadFromFile("Assets\\Images\\AlienNest.png");
+	interceptorTexture.loadFromFile("Assets\\Images\\Missile.png");
+	powerUpTexture.loadFromFile("Assets\\Images\\PowerUp.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture, bulletTexture);
 
@@ -31,16 +34,26 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(3600, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	workers->push_back(Worker(sf::Vector2f(2800, 1600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(1900, 3000), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	
 
 	predators = new std::vector<Predator>();
-	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
 
 	sweepers = new std::vector<Sweeper>();
-	sweepers->push_back(Sweeper(sf::Vector2f(2000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
+	sweepers->push_back(Sweeper(sf::Vector2f(1000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
+	sweepers->push_back(Sweeper(sf::Vector2f(4300, 3000), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
+
+	alienNests = new std::vector<AlienNest>();
+	alienNests->push_back(AlienNest(sf::Vector2f(1400, 600), sf::Vector2f(100, 100), 0.0f, &alienNestTexture));
+
+	powerUps = new std::vector<PowerUp>();
+	powerUps->push_back(PowerUp(sf::Vector2f(750, 200), sf::Vector2f(0, 0), sf::Vector2f(0, 0), &powerUpTexture));
 
 	walls = new std::vector<Wall>();
 
 	floor = new std::vector<Floor>();
+
+	interceptors = new std::vector<Interceptor>();
 
 	levels.levelHandler(walls, &wallTexture, floor, &floorTexture);
 
@@ -48,10 +61,8 @@ Game::Game()
 	radar = sf::View(sf::Vector2f(2880, 1620), sf::Vector2f(5760, 3240));
 	radar.setViewport(sf::FloatRect(0.75f, 0, 0.25f, 0.25f));
 	tempTarget = sf::Vector2f(0, 0);
-	graph = new Graph<pair<string, int>, int>(30);
+	graph = new Graph<pair<string, int>, int>(55);
 	GraphSetUp();
-	//RunAStar(*graph);
-//	text.setColor(sf::Color::Red);
 
 	collectionFont.loadFromFile("Star_Jedi_Rounded.ttf");
 }
@@ -79,37 +90,50 @@ void Game::processEvents()
 void Game::update()
 {
 	//cout << text.getPosition().x << endl;
-	player.Update(workers, predators,sweepers,walls);
+	player.Update(workers, predators,sweepers,walls, alienNests, interceptors,powerUps);
 
 	for (int i = 0; i < workers->size(); i++)
 	{
 		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0), walls);
 		if (workers->at(i).getAlive() == false)
 		{
+			//workers->erase(workers->begin() + (i));
 			for (int s = 0; s < sweepers->size(); s++)
 			{
 				if (sweepers->at(s).targetWorkerIndex == i)
 				{
 					sweepers->at(s).searching = true;
 					sweepers->at(s).states = PathfindingStates::SeekWaypoint;
+					if ((workers->size() - 1) == i)
+					{
+						sweepers->at(s).targetWorkerIndex = workers->size() - 1;
+					}
 				}
 			}
 
 			if (i != workers->size() - 1)
 			{
+
 				std::swap(workers->at(i), workers->at(workers->size() - 1));
 			}
 			if (workers->size() > 0)
 			{
 				workers->pop_back();
 			}
-		}
-
+		}	
 	}
 
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Update();
+	}
+
+	for (int i = 0; i < powerUps->size(); i++)
+	{
+		if(powerUps->at(i).getAlive() == true)
+		{ 
+			powerUps->at(i).Update();
+		}
 	}
 
 
@@ -120,7 +144,7 @@ void Game::update()
 
 	for (int i = 0; i < sweepers->size(); i++)
 	{
-		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers,player.bullets);
+		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(), workers, player.bullets);
 		if (sweepers->at(i).getAlive() == false)
 		{
 			player.collected += sweepers->at(i).workerCount;
@@ -130,12 +154,36 @@ void Game::update()
 			}
 			sweepers->pop_back();
 		}
-
 	}
+
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		alienNests->at(i).Update(interceptors, player.getPosition(), &interceptorTexture,predators,&predatorTexture);
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		interceptors->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
+	}
+	
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
-	// Create a text
-	collectionText.setString("Workers Collected: " + std::to_string(player.collected));
+	// Text displayed correlates with player results 
+	if (player.getAlive() == true && player.collected == 9)
+	{
+		collectionText.setString("You've won. The aliens are dead and the workers are saved.");
+	}
+	if (player.getAlive() == false)
+	{
+		collectionText.setString("You're dead, soldier! At least you collected " + std::to_string(player.collected) + " workers though!");
+	}
+	if (player.getAlive() == true && player.collected < 9)
+	{
+		sf::String output = "Workers Collected: " + std::to_string(player.collected);
+		output += "\n";
+		output += "Player Health : " + std::to_string(player.getHealth());
+		collectionText.setString(output);
+	}
 	collectionText.setFont(collectionFont);
 	collectionText.setCharacterSize(30);
 	collectionText.setStyle(sf::Text::Bold);
@@ -168,6 +216,14 @@ void Game::render()
 		workers->at(i).Draw(m_window);
 	}
 
+	for (int i = 0; i < powerUps->size(); i++)
+	{
+		if (powerUps->at(i).getAlive() == true)
+		{
+			powerUps->at(i).Draw(m_window);
+		}
+	}
+
 	for (int i = 0; i < predators->size(); i++)
 	{
 		predators->at(i).Draw(m_window);
@@ -181,6 +237,19 @@ void Game::render()
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		if (alienNests->at(i).getAlive() == true)
+		{
+			alienNests->at(i).Draw(m_window);
+		}
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		interceptors->at(i).Draw(m_window);
 	}
 
 	m_window->draw(collectionText);
@@ -210,9 +279,27 @@ void Game::render()
 		sweepers->at(i).RadarDraw(m_window);
 	}
 
+	//for (int i = 0; i < sweepers->size(); i++)
+	//{
+	//	sweepers->at(i).Draw(m_window);
+	//}
+
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		if (alienNests->at(i).getAlive() == true)
+		{
+			alienNests->at(i).Draw(m_window);
+		}
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		interceptors->at(i).Draw(m_window);
 	}
 
 	m_window->display();

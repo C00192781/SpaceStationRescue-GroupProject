@@ -113,6 +113,7 @@ public:
     Arc* getArc( Node* pNode );    
     void addArc( Node* pNode, ArcType pWeight );
     void removeArc( Node* pNode );
+	GraphNode<NodeType, ArcType>& GraphNode<NodeType, ArcType>::operator=(GraphNode<NodeType, ArcType>&& other);
 
 };
 
@@ -183,6 +184,22 @@ void GraphNode<NodeType, ArcType>::removeArc(Node* pNode) {
 			m_arcList.remove((*iter));
 		}
 	}
+}
+
+template<typename NodeType, typename ArcType>
+GraphNode<NodeType, ArcType>& GraphNode<NodeType, ArcType>::operator=(GraphNode<NodeType, ArcType>&& other)
+{
+	if (this != &other) { // self-assignment check expected
+		if (other.size != size) {         // storage cannot be reused
+			delete[] mArray;              // destroy storage in this
+			size = 0;
+			mArray = nullptr;             // preserve invariants in case next line throws
+			mArray = new int[other.size]; // create storage in this
+			size = other.size;
+		}
+		std::copy(other.mArray, other.mArray + other.size, mArray);
+	}
+	return *this;
 }
 
 #include "GraphArc.h"
