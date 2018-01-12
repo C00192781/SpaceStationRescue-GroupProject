@@ -21,6 +21,10 @@ Predator::Predator(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f ma
 
 	m_alive = true;
 	m_health = 100;
+
+	radarImage = sf::CircleShape(75);
+	radarImage.setFillColor(sf::Color::Red);
+	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
 }
 
 Predator::~Predator()
@@ -83,13 +87,18 @@ void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vect
 
 		m_sprite.move(m_velocity);
 		m_position = m_sprite.getPosition();
+		radarImage.setPosition(m_position);
 	}
 
 	for (int i = 0; i < bullets->size(); i++)
 	{
 		if (CollisionDetection(bullets->at(i).getSprite()) == true)
 		{
-			bullets->erase(bullets->begin() + i);
+			if (i != bullets->size() - 1)
+			{
+				std::swap(bullets->at(i), bullets->at(bullets->size() - 1));
+			}
+			bullets->pop_back();
 			m_health -= 25;
 		}
 	}
@@ -121,4 +130,12 @@ void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vect
 
 	//WallAvoidance(walls);
 
+}
+
+void Predator::RadarDraw(sf::RenderWindow * window)
+{
+	if (m_alive == true)
+	{
+		window->draw(radarImage);
+	}
 }

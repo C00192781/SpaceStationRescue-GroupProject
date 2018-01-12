@@ -19,6 +19,8 @@ protected:
 	sf::Sprite m_sprite;
 	sf::Vector2f m_size;
 
+	sf::CircleShape radarImage;
+
 public:
 	BasicGameObject();
 	BasicGameObject(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float orientation, sf::Texture tex);
@@ -44,4 +46,6 @@ public:
 	float getOrientation();
 
 	sf::Sprite &getSprite();
+
+	
 };

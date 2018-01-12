@@ -13,7 +13,7 @@ Game::Game()
 	bulletTexture.loadFromFile("Assets\\Images\\Bullet.png");
 	workerTexture.loadFromFile("Assets\\Images\\Worker.png");
 	wallTexture.loadFromFile("Assets\\Images\\BasicWall.png");
-	predatorTexture.loadFromFile("Assets\\Images\\BasicWall.png");
+	predatorTexture.loadFromFile("Assets\\Images\\Predator.png");
 	sweeperTexture.loadFromFile("Assets\\Images\\Sweeper.png");
 	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
 	
@@ -23,6 +23,14 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(700, 300), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(900, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	workers->push_back(Worker(sf::Vector2f(300, 2800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	workers->push_back(Worker(sf::Vector2f(2300, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(2800, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(3600, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	workers->push_back(Worker(sf::Vector2f(2800, 1600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	predators = new std::vector<Predator>();
 	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
@@ -71,11 +79,32 @@ void Game::processEvents()
 void Game::update()
 {
 	//cout << text.getPosition().x << endl;
-	player.Update(workers, predators);
+	player.Update(workers, predators,sweepers,walls);
 
 	for (int i = 0; i < workers->size(); i++)
 	{
 		workers->at(i).Update(sf::Vector2f(0, 0), sf::Vector2f(0, 0), walls);
+		if (workers->at(i).getAlive() == false)
+		{
+			for (int s = 0; s < sweepers->size(); s++)
+			{
+				if (sweepers->at(s).targetWorkerIndex == i)
+				{
+					sweepers->at(s).searching = true;
+					sweepers->at(s).states = PathfindingStates::SeekWaypoint;
+				}
+			}
+
+			if (i != workers->size() - 1)
+			{
+				std::swap(workers->at(i), workers->at(workers->size() - 1));
+			}
+			if (workers->size() > 0)
+			{
+				workers->pop_back();
+			}
+		}
+
 	}
 
 	for (int i = 0; i < walls->size(); i++)
@@ -91,9 +120,18 @@ void Game::update()
 
 	for (int i = 0; i < sweepers->size(); i++)
 	{
-		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers);
-	}
+		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers,player.bullets);
+		if (sweepers->at(i).getAlive() == false)
+		{
+			player.collected += sweepers->at(i).workerCount;
+			if (i != sweepers->size() - 1)
+			{
+				std::swap(sweepers->at(i), sweepers->at(sweepers->size() - 1));
+			}
+			sweepers->pop_back();
+		}
 
+	}
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
 	// Create a text
@@ -155,21 +193,21 @@ void Game::render()
 		floor->at(i).Draw(m_window);
 	}
 
-	player.Draw(m_window);
+	player.RadarDraw(m_window);
 
 	for (int i = 0; i < workers->size(); i++)
 	{
-		workers->at(i).Draw(m_window);
+		workers->at(i).RadarDraw(m_window);
 	}
 
 	for (int i = 0; i < predators->size(); i++)
 	{
-		predators->at(i).Draw(m_window);
+		predators->at(i).RadarDraw(m_window);
 	}
 
 	for (int i = 0; i < sweepers->size(); i++)
 	{
-		sweepers->at(i).Draw(m_window);
+		sweepers->at(i).RadarDraw(m_window);
 	}
 
 	for (int i = 0; i < walls->size(); i++)
