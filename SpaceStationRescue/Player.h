@@ -8,6 +8,8 @@
 #include "Bullet.h"
 #include "Worker.h"
 #include "Predator.h"
+#include "Interceptor.h"
+#include "AlienNest.h"
 
 #include <iostream>
 

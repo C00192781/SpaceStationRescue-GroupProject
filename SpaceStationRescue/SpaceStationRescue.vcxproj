@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlienNest.cpp" />
     <ClCompile Include="BasicAI.cpp" />
     <ClCompile Include="BasicGameObject.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -30,7 +31,6 @@
     <ClCompile Include="Interceptor.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Nest.cpp" />
     <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PowerUp.cpp" />
@@ -42,6 +42,7 @@
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlienNest.h" />
     <ClInclude Include="BasicAI.h" />
     <ClInclude Include="BasicGameObject.h" />
     <ClInclude Include="Bullet.h" />
@@ -55,7 +56,6 @@
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Interceptor.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="Nest.h" />
     <ClInclude Include="Pathfinding.h" />
     <ClInclude Include="PathfindingStates.h" />
     <ClInclude Include="Player.h" />

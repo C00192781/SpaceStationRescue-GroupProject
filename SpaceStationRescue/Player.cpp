@@ -52,7 +52,7 @@ void Player::movementHandler()
 			speed += 0.5f;
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (speed > 0)
 		{

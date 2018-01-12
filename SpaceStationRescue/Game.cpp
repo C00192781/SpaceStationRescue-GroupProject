@@ -16,6 +16,8 @@ Game::Game()
 	predatorTexture.loadFromFile("Assets\\Images\\Predator.png");
 	sweeperTexture.loadFromFile("Assets\\Images\\Sweeper.png");
 	floorTexture.loadFromFile("Assets\\Images\\Floor.png");
+	alienNestTexture.loadFromFile("Assets\\Images\\AlienNest.png");
+	interceptorTexture.loadFromFile("Assets\\Images\\Missile.png");
 	
 	player = Player(sf::Vector2f(300, 300), sf::Vector2f(0, 0), sf::Vector2f(8, 8), 0, &playerTexture, bulletTexture);
 
@@ -30,9 +32,14 @@ Game::Game()
 	sweepers = new std::vector<Sweeper>();
 	sweepers->push_back(Sweeper(sf::Vector2f(2000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
 
+	alienNests = new std::vector<AlienNest>();
+	alienNests->push_back(AlienNest(sf::Vector2f(1400, 600), sf::Vector2f(100, 100), 0.0f, &alienNestTexture));
+
 	walls = new std::vector<Wall>();
 
 	floor = new std::vector<Floor>();
+
+	interceptors = new std::vector<Interceptor>();
 
 	levels.levelHandler(walls, &wallTexture, floor, &floorTexture);
 
@@ -98,6 +105,16 @@ void Game::update()
 		sweepers->at(i).Update(graph, &waypoints, walls, player.getPosition(),workers);
 	}
 
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		alienNests->at(i).Update(interceptors, player.getPosition(), &interceptorTexture);
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		interceptors->at(i).Update(graph, &waypoints, walls, player.getPosition(), player.bullets);
+	}
+
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
 	// Create a text
@@ -149,6 +166,16 @@ void Game::render()
 		walls->at(i).Draw(m_window);
 	}
 
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		alienNests->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		interceptors->at(i).Draw(m_window);
+	}
+
 	m_window->draw(collectionText);
 
 	//Draw Radar
@@ -179,6 +206,16 @@ void Game::render()
 	for (int i = 0; i < walls->size(); i++)
 	{
 		walls->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < alienNests->size(); i++)
+	{
+		alienNests->at(i).Draw(m_window);
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		interceptors->at(i).Draw(m_window);
 	}
 
 	m_window->display();

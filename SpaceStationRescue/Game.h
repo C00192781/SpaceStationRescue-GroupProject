@@ -9,6 +9,8 @@
 #include "Predator.h"
 #include "Sweeper.h"
 #include "Floor.h"
+#include "AlienNest.h"
+#include "Interceptor.h"
 
 #include "Graph.h"
 
@@ -61,6 +63,9 @@ private:
 	sf::Texture wallTexture;
 	std::vector<Wall> * walls;
 
+	sf::Texture alienNestTexture;
+	std::vector<AlienNest> * alienNests;
+
 	sf::Texture bulletTexture;
 
 	Player player;
@@ -68,6 +73,9 @@ private:
 
 	sf::Texture floorTexture;
 	std::vector<Floor> * floor;
+
+	sf::Texture interceptorTexture;
+	std::vector<Interceptor> * interceptors; 
 
 	Level levels; 
 
