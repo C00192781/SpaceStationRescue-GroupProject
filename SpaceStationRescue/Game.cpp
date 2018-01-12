@@ -24,6 +24,14 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(900, 700), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 	workers->push_back(Worker(sf::Vector2f(1000, 1200), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
+	workers->push_back(Worker(sf::Vector2f(300, 2800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	workers->push_back(Worker(sf::Vector2f(2300, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(2800, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+	workers->push_back(Worker(sf::Vector2f(3600, 800), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
+	workers->push_back(Worker(sf::Vector2f(2800, 1600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
+
 	predators = new std::vector<Predator>();
 	predators->push_back(Predator(sf::Vector2f(2500, 900), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
 
