@@ -21,6 +21,10 @@ Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float 
 	m_health = 100;
 	bullets = new std::vector<Bullet>();
 	collected = 0;
+
+	radarImage = sf::CircleShape(75);
+	radarImage.setFillColor(sf::Color::White);
+	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
 }
 
 Player::~Player()
@@ -111,7 +115,7 @@ void Player::Draw(sf::RenderWindow *window)
 	}
 }
 
-void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators)
+void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers)
 {
 	movementHandler();
 	bulletHandler();
@@ -123,7 +127,7 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			workers->at(i).SetMaxSpeed(sf::Vector2f(0.0f, 0.0f));
 			workers->at(i).SetPosition(sf::Vector2f(-1000.0f, -1000.0f));
 			collected++;
-			workers->erase(workers->begin() + (i));
+			m_alive = false;
 		}
 	}
 
@@ -135,8 +139,23 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			setHealth(m_health - 30);
 		}
 	}
+
+	for (int i = 0; i < sweepers->size(); i++)
+	{
+		if (CollisionDetection(sweepers->at(i).getSprite()) == true && sweepers->at(i).getAlive() == true)
+		{
+			sweepers->at(i).setAlive(false);
+			setHealth(m_health - 15);
+		}
+	}
+	radarImage.setPosition(m_position);
 }
 
+
+void Player::RadarDraw(sf::RenderWindow* window)
+{
+	window->draw(radarImage);
+}
 
 
 

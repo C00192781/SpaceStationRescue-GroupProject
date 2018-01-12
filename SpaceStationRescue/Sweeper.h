@@ -3,6 +3,7 @@
 #include "BasicAI.h"
 #include "Graph.h"
 #include "Worker.h"
+#include "Bullet.h"
 #include "Pathfinding.h"
 #include "PathfindingStates.h"
 
@@ -15,27 +16,33 @@ public:
 
 	//void PlayerCollision(sf::FloatRect playerRect);
 
-	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers);
+	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers, std::vector<Bullet>* bullets);
 	int GetRandomWaypoint(int currentWaypoint, int numWaypoints);
 	void SetupLOS();
 	void Draw(sf::RenderWindow* window);
+	void RadarDraw(sf::RenderWindow* window);
 	bool LookForWorker(std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Worker>* workers);
 
 	int startPoint;
 	int endPoint;
+	int workerCount;
+	int targetWorkerIndex;
+	bool haveWorkerTargeted;
+	bool searching;
+	PathfindingStates states;
 
 private:
 	int timer;
-	PathfindingStates states;
-	int workerCount;
+	
+
 	Pathfinding pathfinding;
-	bool searching;
+	
 	sf::CircleShape lineOfSight;
 	float lineOfSightRadius;
 	float lineOfSightAngle;
 	sf::VertexArray line;
-	int targetWorkerIndex;
-	bool haveWorkerTargeted;
+	
+	
 	bool fleeing;
-
+	
 };

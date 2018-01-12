@@ -15,7 +15,7 @@ public:
 	//void PlayerCollision(sf::FloatRect playerRect);
 
 	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Bullet>* bullets);
-
+	void RadarDraw(sf::RenderWindow * window);
 
 	int startPoint;
 	int endPoint;
@@ -23,6 +23,5 @@ public:
 private:
 	int timer;
 	PathfindingStates states;
-	
 
 };

@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include "Worker.h"
 #include "Predator.h"
+#include "Sweeper.h"
 
 #include <iostream>
 
@@ -23,7 +24,8 @@ public:
 	void movementHandler();
 	void bulletHandler();
 	void Draw(sf::RenderWindow *window);
-	void Update(std::vector<Worker>* workers, std::vector<Predator>* predators);
+	void RadarDraw(sf::RenderWindow *window);
+	void Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers);
 
 	float speed;
 
@@ -36,7 +38,7 @@ private:
 	sf::Vector2f velocityHandler(float orientation);
 	float conversion;
 	sf::Texture bulletTexture;
-
+	sf::CircleShape radarImage;
 };
 
 #endif 
