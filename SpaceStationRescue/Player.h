@@ -1,4 +1,4 @@
-#pragma once
+
 
 #ifndef PLAYER
 #define PLAYER
@@ -12,7 +12,6 @@
 #include "AlienNest.h"
 #include "Sweeper.h"
 #include "Wall.h"
-#include "Interceptor.h"
 
 #include <iostream>
 
@@ -29,13 +28,21 @@ public:
 	void bulletHandler();
 	void Draw(sf::RenderWindow *window);
 	void RadarDraw(sf::RenderWindow *window);
-	void Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors);
+
+	//void Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors);
+	void Update(std::vector<Worker>*workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector < Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors);
+
 
 	float speed;
 
 	std::vector<Bullet> * bullets;
 	int bulletTimer;
 	int collected; 
+
+	sf::Vector2f difference;
+	sf::Vector2f result;
+	sf::Vector2f playerOrigin;
+	sf::Vector2f wallOrigin;
 
 	
 private:

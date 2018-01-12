@@ -25,6 +25,11 @@ Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float 
 	radarImage = sf::CircleShape(75);
 	radarImage.setFillColor(sf::Color::White);
 	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
+
+	result = sf::Vector2f(0.0f, 0.0f);
+	difference = sf::Vector2f(0.0f, 0.0f);
+
+
 }
 
 Player::~Player()
@@ -128,12 +133,75 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 		bulletHandler();
 	}
 
+	playerOrigin.x = getPosition().x + getSprite().getGlobalBounds().width /2;
+	playerOrigin.y = getPosition().y + getSprite().getGlobalBounds().height /2;
+
+
 	for (int i = 0; i < walls->size(); i++)
 	{
-		if (CollisionDetection(walls->at(i).getSprite()))
+		if (!CollisionDetection(walls->at(i).getSprite()))
 		{
-				m_sprite.setPosition(m_sprite.getPosition() - (m_velocity*speed));
-				speed = 0;
+			difference.x = 0;
+			difference.y = 0;
+
+			result.x = 0;
+			result.y = 0;
+		}
+
+		if (CollisionDetection(walls->at(i).getSprite()) && speed >0)
+		{
+			wallOrigin.x = walls->at(i).getPosition().x + walls->at(i).getSprite().getGlobalBounds().width / 2;
+			wallOrigin.y = walls->at(i).getPosition().y + walls->at(i).getSprite().getGlobalBounds().height / 2;
+
+			difference.x = playerOrigin.x - wallOrigin.x;
+			difference.y = playerOrigin.y - wallOrigin.y;
+				
+		/*	if (difference.x < 0)
+			{
+				if (-(difference.x) == 20)
+				{
+					result.x = 40;
+					SetPosition(m_sprite.getPosition() - result);
+					speed = 0.5;
+				}
+			}*/
+
+			//if (difference.x > 0)
+			//{
+			//	if (difference.x == 20)
+			//	{
+			//		result.x = 40;
+			//		SetPosition(m_sprite.getPosition() + result);
+			//		speed = 0.5;
+			//	}
+			//}
+
+			//if (difference.y < 0)
+			//{
+			//	if (-(difference.y) > walls->at(i).getSprite().getGlobalBounds().height/2)
+			//	{
+			//		//std::cout << result.y << " + " << ground.size.h / 2 << std::endl;
+			//		result.y = (-(difference.y)) - walls->at(i).getSprite().getGlobalBounds().height / 6;
+			//		SetPosition(m_sprite.getPosition() - result);
+			//		speed = 0.5;
+			//	}
+			//}
+
+			//if (difference.y > 0)
+			//{
+			//	if (difference.y > walls->at(i).getSprite().getGlobalBounds().height /2)
+			//	{
+			//		//std::cout << result.y << " + " << ground.size.h / 2 << std::endl;
+			//		result.y = difference.y - walls->at(i).getSprite().getGlobalBounds().height/ 6;
+			//		SetPosition(m_sprite.getPosition() + result);
+			//		speed = 0.5;
+			//	}
+			//}
+			
+			
+			
+			m_sprite.setPosition(m_sprite.getPosition() - (m_velocity*speed));
+				speed = 0.0;
 		}
 		for (int b = 0; b < bullets->size(); b++)
 		{
@@ -146,6 +214,38 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 				bullets->pop_back();
 			}
 		}
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		for (int b = 0; b < bullets->size(); b++)
+		{
+			if (bullets->at(b).CollisionDetection(interceptors->at(i).getSprite()) == true)
+			{
+				if (b != bullets->size() - 1)
+				{
+					std::swap(bullets->at(b), bullets->at(bullets->size() - 1));
+				}
+				bullets->pop_back();
+				interceptors->at(i).setAlive(false);
+				interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
+				interceptors->at(i).setTimeAlive(0);
+				interceptors->at(i).setTimeDead(0);
+			}
+		}
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		if (CollisionDetection(interceptors->at(i).getSprite()) == true)
+		{
+			setHealth(m_health - 30);
+			interceptors->at(i).setAlive(false);
+			interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
+			interceptors->at(i).setTimeAlive(0);
+			interceptors->at(i).setTimeDead(0);
+		}
+
 	}
 
 	for (int i = 0; i < workers->size(); i++)

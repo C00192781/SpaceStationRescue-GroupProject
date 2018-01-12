@@ -7,7 +7,7 @@ Predator::Predator() : BaseAI(1)
 	startPoint = 0;
 }
 
-Predator::Predator(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxSpeed, sf::Texture *predatorTexture)
+Predator::Predator(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f maxSpeed, sf::Texture *predatorTexture, sf::Texture& bulletTex)
 {
 	m_position = position;
 	m_velocity = velocity;
@@ -18,6 +18,10 @@ Predator::Predator(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f ma
 	timer = 600;
 	startPoint = 0;
 	states = PathfindingStates::SeekWaypoint;
+
+	bulletTexture = bulletTex;
+	predatorBullets = new std::vector<Bullet>();
+	bulletTimer = 0;
 
 	m_alive = true;
 	m_health = 100;
@@ -34,6 +38,7 @@ Predator::~Predator()
 
 void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f> *waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Bullet>* bullets)
 {
+	bulletHandler();
 	if (m_alive == true)
 	{
 		if (states == PathfindingStates::Following)
@@ -103,6 +108,21 @@ void Predator::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vect
 		}
 	}
 
+	//for (int i = 0; i < predatorBullets->size(); i++)
+	//{
+	//	if (CollisionDetection(player.getSprite()) == true)
+	//	{
+	//		if (i != predatorBullets->size() - 1)
+	//		{
+	//			std::swap(predatorBullets->at(i), predatorBullets->at(predatorBullets->size() - 1));
+	//		}
+	//		predatorBullets->pop_back();
+	//		m_health -= 25;
+	//	}
+	//}
+
+	// predatorBullets
+
 	if (m_health <= 0)
 	{
 		setAlive(false);
@@ -137,5 +157,39 @@ void Predator::RadarDraw(sf::RenderWindow * window)
 	if (m_alive == true)
 	{
 		window->draw(radarImage);
+	}
+}
+
+void Predator::bulletHandler()
+{
+	// ADDING BULLETS 
+	if (states == PathfindingStates::Following)
+	{
+		bulletTimer++;
+		if (bulletTimer == 10)
+		{
+			predatorBullets->push_back(Bullet(sf::Vector2f(getPosition().x, getPosition().y), getVelocity(), sf::Vector2f(15, 15), getSprite().getRotation() * 3.14159265359 / 180, &bulletTexture));
+			bulletTimer = 0;
+		}
+	}
+
+	for (int i = 0; i < predatorBullets->size(); i++)
+	{
+		predatorBullets->at(i).BulletHandler(predatorBullets, sf::Vector2f(1920, 1080));
+	}
+
+	for (int i = 0; i < predatorBullets->size(); i++)
+	{
+		predatorBullets->at(i).Update();
+	}
+}
+
+
+void Predator::Draw(sf::RenderWindow * window)
+{
+	window->draw(m_sprite);
+	for (int i = 0; i < predatorBullets->size(); i++)
+	{
+		window->draw(predatorBullets->at(i).getSprite());
 	}
 }

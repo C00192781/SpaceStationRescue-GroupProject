@@ -20,6 +20,7 @@ Interceptor::Interceptor(sf::Vector2f position, sf::Vector2f velocity, sf::Vecto
 	m_alive = true;
 	m_health = 100;
 	timeAlive = 0.0f;
+	timeDead = 0.0f;
 }
 
 Interceptor::~Interceptor()
@@ -29,6 +30,11 @@ Interceptor::~Interceptor()
 
 void Interceptor::Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f> *waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Bullet>* bullets)
 {
+	if (m_alive == false)
+	{
+		timeDead++;
+	}
+
 	if (m_alive == true)
 	{
 		timeAlive++;
@@ -133,4 +139,23 @@ float Interceptor::getTimeAlive()
 void Interceptor::setTimeAlive(float time)
 {
 	timeAlive = time;
+}
+
+float Interceptor::getTimeDead()
+{
+	return timeDead;
+}
+
+void Interceptor::setTimeDead(float time)
+{
+	timeDead = time;
+}
+
+
+void Interceptor::Draw(sf::RenderWindow * window)
+{
+	if (getAlive() == true)
+	{
+		window->draw(m_sprite);
+	}
 }

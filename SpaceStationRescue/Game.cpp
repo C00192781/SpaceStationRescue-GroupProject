@@ -35,7 +35,7 @@ Game::Game()
 	workers->push_back(Worker(sf::Vector2f(2800, 1600), sf::Vector2f(0, 0), sf::Vector2f(3, 3), &workerTexture));
 
 	predators = new std::vector<Predator>();
-	predators->push_back(Predator(sf::Vector2f(800, 100), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture));
+	predators->push_back(Predator(sf::Vector2f(800, 100), sf::Vector2f(0, 0), sf::Vector2f(8, 8), &predatorTexture, bulletTexture));
 
 	sweepers = new std::vector<Sweeper>();
 	sweepers->push_back(Sweeper(sf::Vector2f(1000, 900), sf::Vector2f(0, 0), sf::Vector2f(5, 5), &sweeperTexture));
@@ -198,6 +198,7 @@ void Game::render()
 	}
 
 	player.Draw(m_window);
+	
 
 	for (int i = 0; i < workers->size(); i++)
 	{
