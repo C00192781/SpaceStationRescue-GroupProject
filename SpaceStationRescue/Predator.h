@@ -16,7 +16,9 @@ public:
 
 	void Update(Graph<pair<string, int>, int>* graph, std::vector<sf::Vector2f>* waypoints, std::vector<Wall>* walls, sf::Vector2f playerPos, std::vector<Bullet>* bullets);
 	void RadarDraw(sf::RenderWindow * window);
+
 	void Draw(sf::RenderWindow *window);
+
 
 	int startPoint;
 	int endPoint;
@@ -30,5 +32,6 @@ private:
 	PathfindingStates states;
 
 	sf::Texture bulletTexture;
+
 
 };

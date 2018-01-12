@@ -28,8 +28,10 @@ public:
 	void bulletHandler();
 	void Draw(sf::RenderWindow *window);
 	void RadarDraw(sf::RenderWindow *window);
+
 	//void Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors);
 	void Update(std::vector<Worker>*workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector < Wall>* walls, std::vector<AlienNest>* alienNests, std::vector<Interceptor>* interceptors);
+
 
 	float speed;
 

@@ -64,6 +64,7 @@ void AlienNest::Update(std::vector<Interceptor>* interceptors, sf::Vector2f posi
 			}
 			missileCounter = 1;
 		}
+
 		for (int i = 0; i < interceptors->size(); i++)
 		{
 			if (interceptors->at(i).getTimeAlive() == range) // 5 seconds

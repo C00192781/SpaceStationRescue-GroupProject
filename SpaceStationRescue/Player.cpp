@@ -25,8 +25,11 @@ Player::Player(sf::Vector2f pos, sf::Vector2f vel, sf::Vector2f maxSpeed, float 
 	radarImage = sf::CircleShape(75);
 	radarImage.setFillColor(sf::Color::White);
 	radarImage.setOrigin(radarImage.getLocalBounds().width / 2, radarImage.getLocalBounds().height / 2);
+
 	result = sf::Vector2f(0.0f, 0.0f);
 	difference = sf::Vector2f(0.0f, 0.0f);
+
+
 }
 
 Player::~Player()
@@ -213,7 +216,6 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 		}
 	}
 
-
 	for (int i = 0; i < interceptors->size(); i++)
 	{
 		for (int b = 0; b < bullets->size(); b++)
@@ -229,9 +231,21 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 				interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
 				interceptors->at(i).setTimeAlive(0);
 				interceptors->at(i).setTimeDead(0);
-				setHealth(m_health - 15);
 			}
 		}
+	}
+
+	for (int i = 0; i < interceptors->size(); i++)
+	{
+		if (CollisionDetection(interceptors->at(i).getSprite()) == true)
+		{
+			setHealth(m_health - 30);
+			interceptors->at(i).setAlive(false);
+			interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
+			interceptors->at(i).setTimeAlive(0);
+			interceptors->at(i).setTimeDead(0);
+		}
+
 	}
 
 	for (int i = 0; i < workers->size(); i++)
@@ -265,18 +279,6 @@ void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predato
 			setHealth(m_health - 15);
 		}
 	}
-
-	//for (int i = 0; i < interceptors->size(); i++)
-	//{
-	//	if (CollisionDetection(interceptors->at(i).getSprite()) == true && interceptors->at(i).getAlive() == true)
-	//	{
-	//		interceptors->at(i).SetPosition(sf::Vector2f(-3000, -3000));
-	//		//interceptors->at(i).setAlive(false);
-	//		//interceptors->at(i).setTimeAlive(0);
-	//		//interceptors->at(i).setTimeDead(0);
-	//		setHealth(m_health - 15);
-	//	}
-	//}
 
 	for (int i = 0; i < alienNests->size(); i++)
 	{
