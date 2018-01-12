@@ -6,7 +6,9 @@ c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\pla
 c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(98): warning C4018: '<': signed/unsigned mismatch
 c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(103): warning C4018: '<': signed/unsigned mismatch
 c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(112): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(123): warning C4018: '<': signed/unsigned mismatch
+c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(126): warning C4018: '<': signed/unsigned mismatch
 c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(134): warning C4018: '<': signed/unsigned mismatch
-c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(143): warning C4018: '<': signed/unsigned mismatch
+c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(147): warning C4018: '<': signed/unsigned mismatch
+c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(158): warning C4018: '<': signed/unsigned mismatch
+c:\users\matthew\desktop\master\master\spacestationrescue\spacestationrescue\player.cpp(167): warning C4018: '<': signed/unsigned mismatch
   SpaceStationRescue.vcxproj -> C:\Users\Matthew\Desktop\master\master\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe

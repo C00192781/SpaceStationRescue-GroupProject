@@ -71,7 +71,7 @@ void Game::processEvents()
 void Game::update()
 {
 	//cout << text.getPosition().x << endl;
-	player.Update(workers, predators,sweepers);
+	player.Update(workers, predators,sweepers,walls);
 
 	for (int i = 0; i < workers->size(); i++)
 	{
@@ -124,7 +124,6 @@ void Game::update()
 		}
 
 	}
-
 	view.setCenter(sf::Vector2f(player.getPosition().x, player.getPosition().y));
 
 	// Create a text

@@ -115,10 +115,33 @@ void Player::Draw(sf::RenderWindow *window)
 	}
 }
 
-void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers)
+void Player::Update(std::vector<Worker>* workers, std::vector<Predator>* predators, std::vector<Sweeper>* sweepers, std::vector<Wall>* walls)
 {
+
+
+
 	movementHandler();
 	bulletHandler();
+
+	for (int i = 0; i < walls->size(); i++)
+	{
+		if (CollisionDetection(walls->at(i).getSprite()))
+		{
+				m_sprite.setPosition(m_sprite.getPosition() - (m_velocity*speed));
+				speed = 0;
+		}
+		for (int b = 0; b < bullets->size(); b++)
+		{
+			if (bullets->at(b).CollisionDetection(walls->at(i).getSprite()) == true)
+			{
+				if (b != bullets->size() - 1)
+				{
+					std::swap(bullets->at(b), bullets->at(bullets->size() - 1));
+				}
+				bullets->pop_back();
+			}
+		}
+	}
 
 	for (int i = 0; i < workers->size(); i++)
 	{
