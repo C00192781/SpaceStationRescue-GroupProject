@@ -1,12 +1,8 @@
-﻿  Player.cpp
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(11): warning C4305: '=': truncation from 'double' to 'float'
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(87): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(94): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(99): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(108): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(119): warning C4018: '<': signed/unsigned mismatch
-d:\aiproject\collisiondetection\spacestationrescue\spacestationrescue\player.cpp(130): warning C4018: '<': signed/unsigned mismatch
-  SpaceStationRescue.vcxproj -> D:\AIProject\CollisionDetection\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
-  SpaceStationRescue.vcxproj -> D:\AIProject\CollisionDetection\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)
+﻿  AlienNest.cpp
+c:\users\gameuser\desktop\2018\aiproject\latestmaster\spacestationrescue\spacestationrescue\basicai.h(71): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\2018\aiproject\latestmaster\spacestationrescue\spacestationrescue\basicai.h(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\gameuser\desktop\2018\aiproject\latestmaster\spacestationrescue\spacestationrescue\aliennest.cpp(33): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\2018\aiproject\latestmaster\spacestationrescue\spacestationrescue\aliennest.cpp(54): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\2018\aiproject\latestmaster\spacestationrescue\spacestationrescue\aliennest.cpp(63): warning C4018: '<': signed/unsigned mismatch
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\latestmaster\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.exe
+  SpaceStationRescue.vcxproj -> C:\Users\gameuser\Desktop\2018\AIProject\latestmaster\SpaceStationRescue\SpaceStationRescue\Debug\SpaceStationRescue.pdb (Partial PDB)

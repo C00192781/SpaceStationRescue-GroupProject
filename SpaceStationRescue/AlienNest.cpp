@@ -19,6 +19,7 @@ AlienNest::AlienNest(sf::Vector2f pos, sf::Vector2f size, float orientation, sf:
 	missileInitiated = false;
 	startingPosition = pos;
 	m_health = 100;
+	m_alive = true;
 }
 
 AlienNest::~AlienNest()
